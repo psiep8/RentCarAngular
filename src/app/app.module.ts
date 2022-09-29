@@ -7,6 +7,8 @@ import {FooterComponent} from "./components/footer/footer.component";
 import { LoginComponent } from './views/login/login.component';
 import { UserComponent } from './views/user/user.component';
 import { AdminComponent } from './views/admin/admin.component';
+import {RouterOutlet} from "@angular/router";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AdminComponent } from './views/admin/admin.component';
     AdminComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterOutlet,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
