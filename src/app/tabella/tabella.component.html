@@ -1,0 +1,57 @@
+<div>
+  <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedField">
+    <option *ngFor="let column of columns" [value]="column">{{column}}</option>
+  </select>
+</div>
+<div *ngFor="let actions of tableConfig.actions">
+  <app-button *ngIf="actions.buttonOnTop===true" (click)="onClickButton(actions,null)"
+              [buttonConfig]=
+                "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+  </app-button>
+</div>
+<div class="form-outline">
+  <input type="text" name="filter" [(ngModel)]="filterText" placeholder="Filtra per campo">
+</div>
+
+<table class="table table-striped-columns">
+  <thead>
+  <th *ngFor="let headers of tableConfig.headers" (click)="onSelect(headers.key)">
+    <tr>{{headers.label}}</tr>
+    <i [ngClass]="[sortedOrder==='asc' ? 'arrow up' : 'arrow down']"></i>
+  </th>
+  <th class="accordion-header"><i>Operazioni</i></th>
+  </thead>
+  <tbody>
+
+  <tr
+    *ngFor="let dataRow of data | filter : filterText : selectedField | order : key : sortedOrder | pagination : selectedItemsOption:page">
+    <td *ngFor="let headers of tableConfig.headers">
+      {{ dataRow[headers.key]}}
+    </td>
+    <th>
+      <div *ngFor="let actions of actionConfig">
+
+        <app-button *ngIf="actions.buttonOnTop===false" (click)="onClickButton(actions,dataRow.id)"
+                    [buttonConfig]=
+                      "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+        </app-button>
+
+      </div>
+    </th>
+  </tr>
+  </tbody>
+  Numeri di elementi da mostrare:
+  <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedItemsOption">
+    <option *ngFor="let i of itemsOptionsPage">{{i}}</option>
+  </select>
+  <nav aria-label="...">
+    <ul class="pagination pagination-lg">
+      <li class="page-item active" aria-current="page">
+        <button *ngFor="let i of data | filterpage : selectedItemsOption : page" (click)="selectPage(i.id) ">
+          {{i.id}}</button>
+        <i>Pagina {{page}}</i>
+      </li>
+    </ul>
+  </nav>
+</table>
+
