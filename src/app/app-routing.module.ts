@@ -12,14 +12,11 @@ const routes: Routes = [
     component: LoginComponent
   }, {
     path: 'admin',
-    component: AdminComponent
+    component: CustomerTableComponent
   }, {
     path: 'user',
     component: UserComponent
-  }, {
-    path: 'adminn',
-    component: CustomerTableComponent
-  }
+  },
 ]
 
 @NgModule({

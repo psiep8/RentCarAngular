@@ -22,7 +22,6 @@
   <th class="accordion-header"><i>Operazioni</i></th>
   </thead>
   <tbody>
-
   <tr
     *ngFor="let dataRow of data | filter : filterText : selectedField | order : key : sortedOrder | pagination : selectedItemsOption:page">
     <td *ngFor="let headers of tableConfig.headers">
@@ -30,12 +29,10 @@
     </td>
     <th>
       <div *ngFor="let actions of actionConfig">
-
         <app-button *ngIf="actions.buttonOnTop===false" (click)="onClickButton(actions,dataRow.id)"
                     [buttonConfig]=
                       "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
         </app-button>
-
       </div>
     </th>
   </tr>
