@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() buttonConfig: MyButtonConfig;
+  @Input() buttonConfig!: MyButtonConfig;
 
   constructor() {
   }
@@ -22,10 +22,10 @@ export class ButtonComponent implements OnInit {
 
 export class MyButtonConfig {
 
-  icon: string;
+  icon!: string;
 
-  label: string;
+  label!: string;
 
-  customCssClass: string;
+  customCssClass!: string;
 
 }

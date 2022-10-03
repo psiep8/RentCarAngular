@@ -10,19 +10,19 @@ import {MyButtonConfig} from "../button/button.component";
 })
 export class TabellaComponent implements OnInit {
 
-  @Input() buttonConfig: MyButtonConfig[];
+  @Input() buttonConfig!: MyButtonConfig[];
 
-  @Input() tableConfig: MyTableConfig;
+  @Input() tableConfig!: MyTableConfig;
 
-  @Input() data: any [];
+  @Input() data!: any [];
 
-  @Input() actionConfig: MyTableActions[];
+  @Input() actionConfig!: MyTableActions[];
 
   sortedOrder: string = '';
 
-  key: string;
+  key!: string;
 
-  columns: string[];
+  columns!: string[];
 
   filterText: string = '';
 
@@ -30,7 +30,7 @@ export class TabellaComponent implements OnInit {
 
   selectedItemsOption: string = '';
 
-  itemsOptionsPage: number [];
+  itemsOptionsPage!: number [];
 
   page: number = 1;
 

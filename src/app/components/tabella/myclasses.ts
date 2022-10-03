@@ -1,55 +1,55 @@
 export class MyTableConfig {
 
-  headers: MyHeaders [];
+  headers!: MyHeaders [];
 
-  order: MyOrder;
+  order!: MyOrder;
 
-  search: MySearch;
+  search!: MySearch;
 
-  pagination: MyPagination;
+  pagination!: MyPagination;
 
-  actions: MyTableActions[];
+  actions!: MyTableActions[];
 }
 
 export class MyHeaders {
 
-  key: string;
+  key!: string;
 
-  label: string;
+  label!: string;
 
 }
 
 export class MyOrder {
 
-  defaultColumn: string;
+  defaultColumn!: string;
 
-  orderType: string;
+  orderType!: string;
 
 }
 
 export class MySearch {
 
-  columns: string[]
+  columns!: string[]
 
 }
 
 export class MyPagination {
 
-  itemPerPage: number;
+  itemPerPage!: number;
 
-  itemPerPageOptions: number [];
+  itemPerPageOptions!: number [];
 
 }
 
 export class MyTableActions {
 
-  icon: string;
+  icon!: string;
 
-  label: string;
+  label!: string;
 
-  customCssClass: string;
+  customCssClass!: string;
 
-  buttonOnTop: boolean;
+  buttonOnTop!: boolean;
 
 }
 
