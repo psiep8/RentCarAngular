@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./views/login/login.component";
 import {AdminComponent} from "./views/admin/admin.component";
 import {UserComponent} from "./views/user/user.component";
+import {CustomerTableComponent} from "./data_components/customer-table/customer-table.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,9 @@ const routes: Routes = [
   }, {
     path: 'user',
     component: UserComponent
+  }, {
+    path: 'adminn',
+    component: CustomerTableComponent
   }
 ]
 
