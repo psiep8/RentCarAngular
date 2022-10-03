@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from "../../interfaces/customer";
 import {
   MyHeaders,
   MyOrder,
@@ -8,16 +7,15 @@ import {
   MyTableActions,
   MyTableConfig
 } from "../../components/tabella/myclasses";
-import {CustomerService} from "../../service/customer_service/customer.service";
+import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazioni.service";
 
 @Component({
-  selector: 'app-customer-table',
-  templateUrl: './customer-table.component.html',
-  styleUrls: ['./customer-table.component.css']
+  selector: 'app-prenotazioni-table',
+  templateUrl: './prenotazioni-table.component.html',
+  styleUrls: ['./prenotazioni-table.component.css']
 })
-export class CustomerTableComponent implements OnInit {
-
-  customers: any = [];
+export class PrenotazioniTableComponent implements OnInit {
+  prenotazioni: any = [];
 
   tableConfig!: MyTableConfig;
   order!: MyOrder;
@@ -26,36 +24,27 @@ export class CustomerTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  constructor(private customerService: CustomerService) {
+  constructor(private prenotazioniService: PrenotazioniService) {
   }
 
   ngOnInit(): void {
-    this.getCustomers();
+    this.getPrenotazioni();
 
     this.headers = [{
       key: "id",
       label: "ID"
     }, {
-      key: "nome",
-      label: "Nome"
+      key: "inizio",
+      label: "Data Inizio"
     }, {
-      key: "cognome",
-      label: "Cognome"
-    }, {
-      key: "email",
-      label: "Email"
-    }, {
-      key: "telefono",
-      label: "Telefono"
-    }, {
-      key: "dataDiNascita",
-      label: "Data di nascita"
+      key: "fine",
+      label: "Data Fine"
     }]
     this.order = {
       defaultColumn: "id", orderType: "desc"
     }
     this.search = {
-      columns: ["id", "nome", "cognome", "email", "telefono", "dataNascita"]
+      columns: ["id", "inizio", "fine"]
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]
@@ -81,11 +70,10 @@ export class CustomerTableComponent implements OnInit {
       headers: this.headers, order: this.order, search: this.search, pagination: this.pagination, actions: this.actions
     }
 
-
   }
 
-  getCustomers(): void {
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+  getPrenotazioni(): void {
+    this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => this.prenotazioni = prenotazioni);
   }
 
 

@@ -2,9 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./views/login/login.component";
-import {AdminComponent} from "./views/admin/admin.component";
-import {UserComponent} from "./views/user/user.component";
 import {CustomerTableComponent} from "./data_components/customer-table/customer-table.component";
+import {PrenotazioniTableComponent} from "./data_components/prenotazioni-table/prenotazioni-table.component";
 
 const routes: Routes = [
   {
@@ -15,7 +14,7 @@ const routes: Routes = [
     component: CustomerTableComponent
   }, {
     path: 'user',
-    component: UserComponent
+    component: PrenotazioniTableComponent
   },
 ]
 

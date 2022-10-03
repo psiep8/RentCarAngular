@@ -20,6 +20,7 @@ import {CustomerTableComponent} from './data_components/customer-table/customer-
 import {HttpClientModule} from "@angular/common/http";
 import {InMemoryDataService} from './service/in-memory-data.service';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import { PrenotazioniTableComponent } from './data_components/prenotazioni-table/prenotazioni-table.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
     PaginationPipe,
     FilterpagePipe,
     CustomerTableComponent,
+    PrenotazioniTableComponent,
   ],
   imports: [
     BrowserModule,

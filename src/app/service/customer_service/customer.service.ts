@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CUSTOMERS} from "../../mock-customers";
-import {Customer} from "../../customer";
+import {Customer} from "../../interfaces/customer";
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
