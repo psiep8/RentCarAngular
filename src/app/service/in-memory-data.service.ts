@@ -68,7 +68,49 @@ export class InMemoryDataService {
       inizio: "16/08/2022",
       fine: "06/12/2021",
     }]
-    return {customers, prenotazioni};
+
+    const auto = [{
+      "id": 1,
+      "marca": "Jaguar",
+      "modello": "XK",
+      "cilindrata": 157
+    }, {
+      "id": 2,
+      "marca": "BMW",
+      "modello": "M3",
+      "cilindrata": 192
+    }, {
+      "id": 3,
+      "marca": "BMW",
+      "modello": "X6 M",
+      "cilindrata": 152
+    }, {
+      "id": 4,
+      "marca": "Cadillac",
+      "modello": "Escalade ESV",
+      "cilindrata": 172
+    }, {
+      "id": 5,
+      "marca": "Mazda",
+      "modello": "Miata MX-5",
+      "cilindrata": 84
+    }, {
+      "id": 6,
+      "marca": "Ford",
+      "modello": "Crown Victoria",
+      "cilindrata": 168
+    }, {
+      "id": 7,
+      "marca": "Land Rover",
+      "modello": "Range Rover",
+      "cilindrata": 118
+    }, {
+      "id": 8,
+      "marca": "Mitsubishi",
+      "modello": "Diamante",
+      "cilindrata": 85
+    }]
+    return {customers, prenotazioni, auto};
   }
 
   constructor() {

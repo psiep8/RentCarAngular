@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./views/login/login.component";
 import {CustomerTableComponent} from "./data_components/customer-table/customer-table.component";
 import {PrenotazioniTableComponent} from "./data_components/prenotazioni-table/prenotazioni-table.component";
+import {AutoTableComponent} from "./data_components/auto-table/auto-table.component";
 
 const routes: Routes = [
   {
@@ -15,7 +16,10 @@ const routes: Routes = [
   }, {
     path: 'user',
     component: PrenotazioniTableComponent
-  },
+  }, {
+    path: 'auto',
+    component: AutoTableComponent
+  }
 ]
 
 @NgModule({

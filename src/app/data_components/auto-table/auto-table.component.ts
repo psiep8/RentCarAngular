@@ -7,15 +7,15 @@ import {
   MyTableActions,
   MyTableConfig
 } from "../../components/tabella/myclasses";
-import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazioni.service";
+import {AutoService} from "../../service/auto_service/auto.service";
 
 @Component({
-  selector: 'app-prenotazioni-table',
-  templateUrl: './prenotazioni-table.component.html',
-  styleUrls: ['./prenotazioni-table.component.css']
+  selector: 'app-auto-table',
+  templateUrl: './auto-table.component.html',
+  styleUrls: ['./auto-table.component.css']
 })
-export class PrenotazioniTableComponent implements OnInit {
-  prenotazioni: any = [];
+export class AutoTableComponent implements OnInit {
+  auto: any = [];
 
   tableConfig!: MyTableConfig;
   order!: MyOrder;
@@ -24,34 +24,37 @@ export class PrenotazioniTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  constructor(private prenotazioniService: PrenotazioniService) {
+  constructor(private autoService: AutoService) {
   }
 
   ngOnInit(): void {
-    this.getPrenotazioni();
+    this.getAutos();
 
     this.headers = [{
       key: "id",
       label: "ID"
     }, {
-      key: "inizio",
-      label: "Data Inizio"
+      key: "marca",
+      label: "Marca"
     }, {
-      key: "fine",
-      label: "Data Fine"
+      key: "modello",
+      label: "Modello"
+    }, {
+      key: "cilindrata",
+      label: "Cilindrata"
     }]
     this.order = {
       defaultColumn: "id", orderType: "desc"
     }
     this.search = {
-      columns: ["id", "inizio", "fine"]
+      columns: ["id", "marca", "modello", "cilindrata"]
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]
     }
     this.actions = [{
       icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
-      label: "Aggiungi nuova prenotazione",
+      label: "Aggiungi nuova auto",
       customCssClass: "btn btn-dark",
       buttonOnTop: true
     }, {
@@ -72,8 +75,8 @@ export class PrenotazioniTableComponent implements OnInit {
 
   }
 
-  getPrenotazioni(): void {
-    this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => this.prenotazioni = prenotazioni);
+  getAutos(): void {
+    this.autoService.getAutos().subscribe(auto => this.auto = auto);
   }
 
 

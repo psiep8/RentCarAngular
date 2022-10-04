@@ -21,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {InMemoryDataService} from './service/in-memory-data.service';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import { PrenotazioniTableComponent } from './data_components/prenotazioni-table/prenotazioni-table.component';
+import { AutoTableComponent } from './data_components/auto-table/auto-table.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PrenotazioniTableComponent } from './data_components/prenotazioni-table
     FilterpagePipe,
     CustomerTableComponent,
     PrenotazioniTableComponent,
+    AutoTableComponent,
   ],
   imports: [
     BrowserModule,
