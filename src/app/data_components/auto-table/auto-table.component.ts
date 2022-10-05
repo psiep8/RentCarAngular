@@ -43,11 +43,12 @@ export class AutoTableComponent implements OnInit {
       key: "cilindrata",
       label: "Cilindrata"
     }]
+    this.search = {
+      columns: ["id", "marca", "modello", "cilindrata"],
+      filterAllowed: false
+    }
     this.order = {
       defaultColumn: "id", orderType: "desc"
-    }
-    this.search = {
-      columns: ["id", "marca", "modello", "cilindrata"]
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]

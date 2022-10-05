@@ -29,7 +29,9 @@ export class MyOrder {
 
 export class MySearch {
 
-  columns!: string[]
+  columns!: string[];
+
+  filterAllowed!: boolean;
 
 }
 

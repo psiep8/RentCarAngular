@@ -1,3 +1,6 @@
+import {Moment} from 'moment';
+import * as moment from "moment";
+
 export interface Customer {
   id: number;
   nome: string;
@@ -5,6 +8,6 @@ export interface Customer {
   password?: string;
   email: string;
   telefono: string;
-  dataDiNascita: string;
+  dataDiNascita: moment.Moment;
   customer?: boolean;
 }

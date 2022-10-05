@@ -1,1 +1,17 @@
+<br><br>
+<div align="center" style="margin: auto">
+  <form [formGroup]="reactiveForm">
+    <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
+      <input type="date" id="inizio" formControlName="dataInizio" class="form-control">
+      <label for="inizio">Data di inizio: </label>
+
+    </div>
+    <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
+      <input type="date" id="fine" formControlName="dataFine" class="form-control">
+      <label for="fine">Data di fine: </label>
+
+    </div>
+  </form>
+</div>
+
 <app-tabella [data]="prenotazioni" [tableConfig]="tableConfig" [actionConfig]="actions"></app-tabella>

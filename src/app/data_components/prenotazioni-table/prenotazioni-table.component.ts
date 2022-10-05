@@ -8,6 +8,7 @@ import {
   MyTableConfig
 } from "../../components/tabella/myclasses";
 import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazioni.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-prenotazioni-table',
@@ -24,12 +25,17 @@ export class PrenotazioniTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
+  reactiveForm!: FormGroup;
+
   constructor(private prenotazioniService: PrenotazioniService) {
   }
 
   ngOnInit(): void {
     this.getPrenotazioni();
-
+    this.reactiveForm = new FormGroup({
+      dataInizio: new FormControl(null),
+      dataFine: new FormControl(null),
+    });
     this.headers = [{
       key: "id",
       label: "ID"
@@ -40,11 +46,12 @@ export class PrenotazioniTableComponent implements OnInit {
       key: "fine",
       label: "Data Fine"
     }]
+    this.search = {
+      columns: ["id", "inizio", "fine"],
+      filterAllowed: false
+    }
     this.order = {
       defaultColumn: "id", orderType: "desc"
-    }
-    this.search = {
-      columns: ["id", "inizio", "fine"]
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]

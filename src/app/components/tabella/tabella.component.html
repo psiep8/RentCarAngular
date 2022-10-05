@@ -1,20 +1,16 @@
-<div>
+<div *ngIf="tableConfig.search.filterAllowed===true" align="center" style="margin: auto;
+    width: 50%;
+    padding: 10px;">
   <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedField">
     <option *ngFor="let column of columns" [value]="column">{{column}}</option>
   </select>
+  <div class="form-outline">
+    <input type="text" name="filter" [(ngModel)]="filterText" placeholder="Filtra per campo">
+  </div>
 </div>
-<div *ngFor="let actions of tableConfig.actions">
-  <app-button *ngIf="actions.buttonOnTop===true" (click)="onClickButton(actions,null)"
-              [buttonConfig]=
-                "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
-  </app-button>
-</div>
-<div class="form-outline">
-  <input type="text" name="filter" [(ngModel)]="filterText" placeholder="Filtra per campo">
-</div>
-
-<table class="table table-striped-columns">
-  <thead>
+<br><br>
+<table class="table table-bordered table-striped-columns" style="width:70%;margin:auto">
+  <thead class="border-opacity-75">
   <th *ngFor="let headers of tableConfig.headers" (click)="onSelect(headers.key)">
     <tr>{{headers.label}}</tr>
     <i [ngClass]="[sortedOrder==='asc' ? 'arrow up' : 'arrow down']"></i>
@@ -36,7 +32,21 @@
       </div>
     </th>
   </tr>
+
+
   </tbody>
+</table>
+
+<div align="center" style="margin: auto;
+    width: 50%;
+    padding: 10px;">
+  <div *ngFor="let actions of tableConfig.actions">
+    <app-button *ngIf="actions.buttonOnTop===true" (click)="onClickButton(actions,null)"
+                [buttonConfig]=
+                  "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+    </app-button>
+  </div>
+  <br>
   Numeri di elementi da mostrare:
   <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedItemsOption">
     <option *ngFor="let i of itemsOptionsPage">{{i}}</option>
@@ -44,11 +54,12 @@
   <nav aria-label="...">
     <ul class="pagination pagination-lg">
       <li class="page-item active" aria-current="page">
-        <button *ngFor="let i of data | filterpage : selectedItemsOption : page" (click)="selectPage(i.id) ">
+        <button *ngFor="let i of data | filterpage : selectedItemsOption : page" (click)="selectPage(i.id)"
+                style="margin: auto">
           {{i.id}}</button>
         <i>Pagina {{page}}</i>
       </li>
     </ul>
   </nav>
-</table>
+</div>
 

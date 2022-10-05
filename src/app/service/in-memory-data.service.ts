@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import * as moment from "moment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,61 +13,61 @@ export class InMemoryDataService {
       cognome: "Corinton",
       email: "jcorinton0@comsenz.com",
       telefono: "+850 557 905 9083",
-      dataDiNascita: "9/12/2022"
+      dataDiNascita: moment("4/13/2021").format('LL')
     }, {
       id: 2,
       nome: "Hally",
       cognome: "Ioannidis",
       email: "hioannidis1@rambler.ru",
       telefono: "+7 503 334 7060",
-      dataDiNascita: "10/28/2021"
+      dataDiNascita: moment("9/21/2022").format('LL')
     }, {
       id: 3,
       nome: "Tracey",
       cognome: "Dreger",
       email: "tdreger2@huffingtonpost.com",
       telefono: "+261 976 906 4477",
-      dataDiNascita: "7/4/2022"
+      dataDiNascita: moment("6/23/2022").format('LL')
     }, {
       id: 4,
       nome: "Sol",
       cognome: "Leake",
       email: "sleake3@whitehouse.gov",
       telefono: "+63 625 533 7455",
-      dataDiNascita: "6/30/2022"
+      dataDiNascita: moment("9/12/2022").format('LL')
     }, {
       id: 5,
       nome: "Vince",
       cognome: "Stokes",
       email: "vstokes4@examiner.com",
       telefono: "+86 422 977 2883",
-      dataDiNascita: "8/26/2022"
+      dataDiNascita: moment("1/27/2022").format('LL')
     }];
 
     const prenotazioni = [{
       id: 1,
-      inizio: "21/04/2022",
-      fine: "08/02/2022",
+      inizio: moment("11/04/2022").format('LL'),
+      fine: moment("08/02/2022").format('LL'),
     }, {
       id: 2,
-      inizio: "29/06/2022",
-      fine: "13/02/2022",
+      inizio: moment("09/06/2022").format('LL'),
+      fine: moment("12/02/2022").format('LL'),
     }, {
       id: 3,
-      inizio: "01/03/2022",
-      fine: "03/09/2022",
+      inizio: moment("01/03/2022").format('LL'),
+      fine: moment("03/09/2022").format('LL'),
     }, {
       id: 4,
-      inizio: "21/08/2022",
-      fine: "01/03/2022",
+      inizio: moment("11/08/2022").format('LL'),
+      fine: moment("01/03/2022").format('LL'),
     }, {
       id: 5,
-      inizio: "16/08/2022",
-      fine: "06/12/2021",
+      inizio: moment("11/08/2022").format('LL'),
+      fine: moment("06/12/2021").format('LL'),
     }, {
       id: 6,
-      inizio: "16/08/2022",
-      fine: "06/12/2021",
+      inizio: moment("10/08/2022").format('LL'),
+      fine: moment("06/12/2021").format('LL'),
     }]
 
     const auto = [{

@@ -51,11 +51,12 @@ export class CustomerTableComponent implements OnInit {
       key: "dataDiNascita",
       label: "Data di nascita"
     }]
+    this.search = {
+      columns: ["id", "nome", "cognome", "email", "telefono", "dataNascita"],
+      filterAllowed: true
+    }
     this.order = {
       defaultColumn: "id", orderType: "desc"
-    }
-    this.search = {
-      columns: ["id", "nome", "cognome", "email", "telefono", "dataNascita"]
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]
