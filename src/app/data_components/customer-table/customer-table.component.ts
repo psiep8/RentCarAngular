@@ -65,17 +65,22 @@ export class CustomerTableComponent implements OnInit {
       icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
       label: "Aggiungi nuovo utente",
       customCssClass: "btn btn-dark",
-      buttonOnTop: true
+      buttonOnTop: true,
+      buttonEdit: false
     }, {
       icon: "https://static.thenounproject.com/png/1054395-200.png",
       label: "Modifica",
       customCssClass: "btn btn-secondary",
-      buttonOnTop: false
+      buttonOnTop: false,
+      buttonEdit: true
+
     }, {
       icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
       label: "Elimina",
       customCssClass: "btn btn-primary",
-      buttonOnTop: false
+      buttonOnTop: false,
+      buttonEdit: false
+
     }
     ]
     this.tableConfig = {

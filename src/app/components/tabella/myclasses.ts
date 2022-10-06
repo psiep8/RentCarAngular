@@ -53,6 +53,10 @@ export class MyTableActions {
 
   buttonOnTop!: boolean;
 
+  buttonEdit!: boolean;
+
 }
+
+
 
 

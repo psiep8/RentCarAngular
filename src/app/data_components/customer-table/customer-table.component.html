@@ -1,1 +1,4 @@
 <app-tabella [data]="customers" [tableConfig]="tableConfig" [actionConfig]="actions"></app-tabella>
+<div *ngFor="let c of customers">
+  {{c.dataDiNascita}}
+</div>

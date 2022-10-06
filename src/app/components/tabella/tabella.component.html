@@ -25,9 +25,15 @@
     </td>
     <th>
       <div *ngFor="let actions of actionConfig">
-        <app-button *ngIf="actions.buttonOnTop===false" (click)="onClickButton(actions,dataRow.id)"
+        <app-button *ngIf="actions.buttonOnTop===false&&actions.buttonEdit===true" [routerLink]="['edit',dataRow.id]"
                     [buttonConfig]=
                       "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+          <!-- Da modificare edit/delete-->
+        </app-button>
+        <app-button *ngIf="actions.buttonOnTop===false&&actions.buttonEdit===false" [routerLink]="['delete',dataRow.id]"
+                    [buttonConfig]=
+                      "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+          <!-- Da modificare edit/delete-->
         </app-button>
       </div>
     </th>
@@ -36,14 +42,12 @@
 
   </tbody>
 </table>
-
 <div align="center" style="margin: auto;
     width: 50%;
     padding: 10px;">
   <div *ngFor="let actions of tableConfig.actions">
-    <app-button *ngIf="actions.buttonOnTop===true" (click)="onClickButton(actions,null)"
-                [buttonConfig]=
-                  "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+    <app-button *ngIf="actions.buttonOnTop===true" [buttonConfig]=
+      "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}" [routerLink]="['add']">
     </app-button>
   </div>
   <br>

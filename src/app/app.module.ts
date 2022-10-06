@@ -22,6 +22,9 @@ import {InMemoryDataService} from './service/in-memory-data.service';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {PrenotazioniTableComponent} from './data_components/prenotazioni-table/prenotazioni-table.component';
 import {AutoTableComponent} from './data_components/auto-table/auto-table.component';
+import {AddCustomerComponent} from './crud_components/customers/add-customer/add-customer.component';
+import {AddAutoComponent} from './crud_components/auto/add-auto/add-auto.component';
+import { EditAutoComponent } from './crud_components/auto/edit-auto/edit-auto.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import {AutoTableComponent} from './data_components/auto-table/auto-table.compon
     CustomerTableComponent,
     PrenotazioniTableComponent,
     AutoTableComponent,
+    AddCustomerComponent,
+    AddAutoComponent,
+    EditAutoComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,5 +64,6 @@ import {AutoTableComponent} from './data_components/auto-table/auto-table.compon
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
