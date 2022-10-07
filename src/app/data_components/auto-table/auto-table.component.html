@@ -1,1 +1,3 @@
-<app-tabella [data]="auto" [tableConfig]="tableConfig" [actionConfig]="actions"></app-tabella>
+<app-tabella [data]="auto" [tableConfig]="tableConfig" [actionConfig]="actions"
+             (outputTable)="onClickAction($event)"></app-tabella>
+

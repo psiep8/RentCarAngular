@@ -8,6 +8,8 @@ import {
   MyTableConfig
 } from "../../components/tabella/myclasses";
 import {AutoService} from "../../service/auto_service/auto.service";
+import {Auto} from "../../interfaces/auto";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-auto-table',
@@ -24,12 +26,14 @@ export class AutoTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  constructor(private autoService: AutoService) {
+  constructor(private autoService: AutoService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getAutos();
-
+    this.autoService.getAutos().subscribe(auto => {
+      this.auto = auto;
+      console.log(this.auto);
+    })
     this.headers = [{
       key: "id",
       label: "ID"
@@ -72,7 +76,6 @@ export class AutoTableComponent implements OnInit {
       customCssClass: "btn btn-primary",
       buttonOnTop: false,
       buttonEdit: false
-
     }
     ]
     this.tableConfig = {
@@ -81,9 +84,17 @@ export class AutoTableComponent implements OnInit {
 
   }
 
-  getAutos(): void {
-    this.autoService.getAutos().subscribe(auto => this.auto = auto);
+  onClickAction(event: any) {
+    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
+      this.autoService.deleteAuto(event.dataRow.id).subscribe(res => {
+        this.auto = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
+        console.log('Post deleted successfully on auto-table component!');
+        console.log(this.auto)
+      })
+    } else if (event.action.buttonOnTop === true) {
+      this.router.navigate(['auto/add'])
+    } else {
+      this.router.navigate(['auto/edit', event.dataRow.id])
+    }
   }
-
-
 }

@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableActions, MyTableConfig} from "./myclasses";
 import {MyButtonConfig} from "../button/button.component";
+import {AutoService} from "../../service/auto_service/auto.service";
+import {Auto} from "../../interfaces/auto";
+import {Router} from "@angular/router";
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -36,6 +40,8 @@ export class TabellaComponent implements OnInit {
 
   @Output() outputTable = new EventEmitter<any>();
 
+  auto: any = [];
+
   constructor() {
   }
 
@@ -62,12 +68,14 @@ export class TabellaComponent implements OnInit {
     this.page = page;
   }
 
-  onClickButton(action: MyTableActions, row: any) {
-    this.outputTable.emit({action: action, row: row})
+  onClickButton(action: MyTableActions, dataRow: any) {
+    this.outputTable.emit({action, dataRow})
+    console.log(action)
+    console.log(dataRow)
   }
 
   addNewItem(action: MyTableActions) {
-    this.outputTable.emit({action: action});
+    this.outputTable.emit({action});
   }
 
 }
