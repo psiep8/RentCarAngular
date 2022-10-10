@@ -13,7 +13,7 @@ import {EditCustomerComponent} from "./crud_components/customers/edit-customer/e
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   }, {
     path: 'admin',
     component: CustomerTableComponent
