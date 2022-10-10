@@ -27,7 +27,6 @@ export class AddAutoComponent implements OnInit {
     this.autoService.addAuto(this.reactiveForm.value).subscribe((res: any) => {
       console.log('Post created successfully!');
       this.router.navigateByUrl('auto');
-
     })
   }
 

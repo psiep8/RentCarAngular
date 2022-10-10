@@ -23,7 +23,9 @@ export class AddCustomerComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
       dataDiNascita: new FormControl('', [Validators.required]),
+
     });
+
   }
 
   submit() {

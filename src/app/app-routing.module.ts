@@ -8,6 +8,7 @@ import {AutoTableComponent} from "./data_components/auto-table/auto-table.compon
 import {AddCustomerComponent} from "./crud_components/customers/add-customer/add-customer.component";
 import {AddAutoComponent} from "./crud_components/auto/add-auto/add-auto.component";
 import {EditAutoComponent} from "./crud_components/auto/edit-auto/edit-auto.component";
+import {EditCustomerComponent} from "./crud_components/customers/edit-customer/edit-customer.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
   }, {
     path: 'admin/add',
     component: AddCustomerComponent
+  }, {
+    path: 'admin/edit/:id',
+    component: EditCustomerComponent
   }, {
     path: 'auto/add',
     component: AddAutoComponent

@@ -32,7 +32,6 @@ export class AutoTableComponent implements OnInit {
   ngOnInit(): void {
     this.autoService.getAutos().subscribe(auto => {
       this.auto = auto;
-      console.log(this.auto);
     })
     this.headers = [{
       key: "id",

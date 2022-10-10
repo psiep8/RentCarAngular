@@ -9,6 +9,7 @@ import {
 } from "../../components/tabella/myclasses";
 import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazioni.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Prenotazioni} from "../../interfaces/prenotazioni";
 
 @Component({
   selector: 'app-prenotazioni-table',
@@ -87,5 +88,17 @@ export class PrenotazioniTableComponent implements OnInit {
     this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => this.prenotazioni = prenotazioni);
   }
 
+  onClickAction(event: any) {
+    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
+      this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
+        this.prenotazioni = this.prenotazioni.filter((item: Prenotazioni) => item.id !== event.dataRow.id);
+      })
+      /*} else if (event.action.buttonOnTop === true) {
+        this.router.navigate(['admin/add'])
+      } else {
+        this.router.navigate(['admin/edit', event.dataRow.id])
+      }*/
+    }
+  }
 
 }

@@ -10,7 +10,9 @@
       <input type="date" id="fine" formControlName="dataFine" class="form-control">
       <label for="fine">Data di fine: </label>
     </div>
+    <button type="submit" class="btn btn-primary">Controlla auto disponibili in queste date</button>
   </form>
 </div>
 
-<app-tabella [data]="prenotazioni" [tableConfig]="tableConfig" [actionConfig]="actions"></app-tabella>
+<app-tabella [data]="prenotazioni" [tableConfig]="tableConfig" [actionConfig]="actions"
+             (outputTable)="onClickAction($event)"></app-tabella>

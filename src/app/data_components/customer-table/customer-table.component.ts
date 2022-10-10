@@ -9,6 +9,8 @@ import {
   MyTableConfig
 } from "../../components/tabella/myclasses";
 import {CustomerService} from "../../service/customer_service/customer.service";
+import {Auto} from "../../interfaces/auto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customer-table',
@@ -26,12 +28,13 @@ export class CustomerTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getCustomers();
-
+    this.customerService.getCustomers().subscribe(customers => {
+      this.customers = customers;
+    })
     this.headers = [{
       key: "id",
       label: "ID"
@@ -90,9 +93,16 @@ export class CustomerTableComponent implements OnInit {
 
   }
 
-  getCustomers(): void {
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+  onClickAction(event: any) {
+    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
+      this.customerService.deleteCustomer(event.dataRow.id).subscribe(res => {
+        this.customers = this.customers.filter((item: Customer) => item.id !== event.dataRow.id);
+      })
+    } else if (event.action.buttonOnTop === true) {
+      this.router.navigate(['admin/add'])
+    } else {
+      this.router.navigate(['admin/edit', event.dataRow.id])
+    }
   }
-
 
 }
