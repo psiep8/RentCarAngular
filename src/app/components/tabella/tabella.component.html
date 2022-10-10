@@ -52,9 +52,10 @@
   <nav aria-label="...">
     <ul class="pagination pagination-lg">
       <li class="page-item active" aria-current="page">
-        <button *ngFor="let i of data | filterpage : selectedItemsOption : page" (click)="selectPage(i.id)"
-                style="margin: auto">
-          {{i.id}}</button>
+        <button *ngFor="let i of data | filterpage : selectedItemsOption : page; let index =index"
+                (click)="selectPage(index + 1) ">
+          {{index + 1}}
+        </button>
         <i>Pagina {{page}}</i>
       </li>
     </ul>
