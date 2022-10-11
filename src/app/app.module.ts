@@ -26,6 +26,7 @@ import {AddCustomerComponent} from './crud_components/customers/add-customer/add
 import {AddAutoComponent} from './crud_components/auto/add-auto/add-auto.component';
 import { EditAutoComponent } from './crud_components/auto/edit-auto/edit-auto.component';
 import { EditCustomerComponent } from './crud_components/customers/edit-customer/edit-customer.component';
+import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { EditCustomerComponent } from './crud_components/customers/edit-customer
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false}
     )],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 

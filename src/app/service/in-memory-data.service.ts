@@ -7,24 +7,26 @@ import * as moment from "moment";
 export class InMemoryDataService {
 
   createDb() {
+
     const customers = [{
       id: 1,
       nome: "Jamey",
       cognome: "Corinton",
-      password: "ciao",
-
+      password: "admin",
       email: "jcorinton0@comsenz.com",
       telefono: "+850 557 905 9083",
-      dataDiNascita: moment("4/13/2021").format('2021-04-13')
+      dataDiNascita: moment("4/13/2021").format('2021-04-13'),
+      customer: false
     }, {
       id: 2,
       nome: "Hally",
       cognome: "Ioannidis",
       password: "ciao",
-
       email: "hioannidis1@rambler.ru",
       telefono: "+7 503 334 7060",
-      dataDiNascita: moment("9/21/2022").format('2022-09-21')
+      dataDiNascita: moment("9/21/2022").format('2022-09-21'),
+      customer: true
+
     }, {
       id: 3,
       nome: "Tracey",
@@ -32,7 +34,9 @@ export class InMemoryDataService {
       password: "ciao",
       email: "tdreger2@huffingtonpost.com",
       telefono: "+261 976 906 4477",
-      dataDiNascita: moment("6/23/2022").format('2022-06-23')
+      dataDiNascita: moment("6/23/2022").format('2022-06-23'),
+      customer: true
+
     }, {
       id: 4,
       nome: "Sol",
@@ -40,7 +44,9 @@ export class InMemoryDataService {
       password: "ciao",
       email: "sleake3@whitehouse.gov",
       telefono: "+63 625 533 7455",
-      dataDiNascita: moment("9/12/2022").format('2022-09-12')
+      dataDiNascita: moment("9/12/2022").format('2022-09-12'),
+      customer: true
+
     }, {
       id: 5,
       nome: "Vince",
@@ -48,7 +54,8 @@ export class InMemoryDataService {
       password: "ciao",
       email: "vstokes4@examiner.com",
       telefono: "+86 422 977 2883",
-      dataDiNascita: moment("1/27/2022").format('2022-01-27')
+      dataDiNascita: moment("1/27/2022").format('2022-01-27'),
+      customer: true
     }];
 
     const prenotazioni = [{

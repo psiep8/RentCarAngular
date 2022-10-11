@@ -5,7 +5,7 @@
     <option *ngFor="let column of columns" [value]="column">{{column}}</option>
   </select>
   <div class="form-outline">
-    <input type="text" name="filter" [(ngModel)]="filterText" placeholder="Filtra per campo">
+    <input type="text" name="filter" [(ngModel)]="filterText" placeholder="Filtra per {{selectedField}}">
   </div>
 </div>
 <br><br>

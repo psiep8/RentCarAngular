@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/login/auth.service";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -10,19 +9,31 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form = new FormGroup({
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
-  })
 
-  constructor(private http: HttpClient, private router: Router) {
+  reactiveForm!: FormGroup;
+
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.reactiveForm = new FormGroup(
+      {
+        email: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required])
+      })
 
-    if (this.form.invalid) {
-      return;
-    }
+    console.log(this.reactiveForm)
   }
 
+  submitForm() {
+    let user = this.reactiveForm?.value
+    this.authService.login(user.email, user.password);
+    //redirect momentanea
+    this.router.navigate(['admin'])
+    console.log(this.authService.login(user.email, user.password))
+  }
+
+  onLogout() {
+    this.authService.deleteToken();
+  }
 }
