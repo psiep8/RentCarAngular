@@ -24,29 +24,17 @@ export class AddCustomerComponent implements OnInit {
       cognome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
-      dataDiNascita: new FormControl('', [Validators.required]),
+      dataNascita: new FormControl('', [Validators.required]),
 
     });
 
-  }
-
-  addCustomer() {
-    this.customerService.createCustomer(this.customer).subscribe(data => {
-        console.log(data);
-        this.goToEmployeeList();
-      },
-      error => console.log(error));
-  }
-
-  goToEmployeeList() {
-    this.router.navigate(['admin']);
   }
 
   submit() {
     console.log(this.reactiveForm.value);
     this.customerService.createCustomer(this.reactiveForm.value).subscribe((res: any) => {
       console.log('Post created successfully!');
-      this.addCustomer();
+      this.router.navigate(['admin']);
     })
   }
 

@@ -8,6 +8,6 @@ export interface Customer {
   password?: string;
   email: string;
   telefono: string;
-  dataDiNascita: moment.Moment;
+  dataNascita: moment.Moment;
   customer?: boolean;
 }

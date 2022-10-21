@@ -34,9 +34,6 @@ export class CustomerTableComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers();
     this.headers = [{
-      key: "id",
-      label: "ID"
-    }, {
       key: "nome",
       label: "Nome"
     }, {
@@ -49,7 +46,7 @@ export class CustomerTableComponent implements OnInit {
       key: "telefono",
       label: "Telefono"
     }, {
-      key: "dataDiNascita",
+      key: "dataNascita",
       label: "Data di nascita"
     }]
     this.search = {
