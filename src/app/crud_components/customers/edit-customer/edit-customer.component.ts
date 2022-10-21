@@ -23,7 +23,7 @@ export class EditCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
-    this.customerService.getCustomer(this.id).subscribe((customer: Customer) => {
+    this.customerService.getCustomerById(this.id).subscribe((customer: Customer) => {
       this.customer = customer;
       console.log(this.customer)
       console.log(this.customer.id)
@@ -41,7 +41,7 @@ export class EditCustomerComponent implements OnInit {
 
   submit() {
     console.log(this.reactiveForm.value);
-    this.customerService.updateCustomer(this.reactiveForm.value).subscribe(res => {
+    this.customerService.updateCustomer(this.id, this.reactiveForm.value).subscribe(res => {
       console.log('Post updated successfully!');
       this.router.navigateByUrl('admin');
     })

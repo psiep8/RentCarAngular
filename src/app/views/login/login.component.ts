@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit {
     console.log(this.authService.login(user.email, user.password))
   }
 
-  onLogout() {
-    this.authService.deleteToken();
+  provaClick = (): void => {
+    this.authService.getWelcome().subscribe(res => {
+      console.log(res);
+    });
   }
+
+
 }

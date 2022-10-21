@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AutoService} from "../../../service/auto_service/auto.service";
 import {Router} from "@angular/router";
 import {CustomerService} from "../../../service/customer_service/customer.service";
+import {Customer} from "../../../interfaces/customer";
 
 @Component({
   selector: 'app-add',
@@ -12,6 +13,7 @@ import {CustomerService} from "../../../service/customer_service/customer.servic
 export class AddCustomerComponent implements OnInit {
 
   reactiveForm!: FormGroup;
+  customer!: Customer;
 
   constructor(private customerService: CustomerService, private router: Router) {
   }
@@ -28,11 +30,23 @@ export class AddCustomerComponent implements OnInit {
 
   }
 
+  addCustomer() {
+    this.customerService.createCustomer(this.customer).subscribe(data => {
+        console.log(data);
+        this.goToEmployeeList();
+      },
+      error => console.log(error));
+  }
+
+  goToEmployeeList() {
+    this.router.navigate(['admin']);
+  }
+
   submit() {
     console.log(this.reactiveForm.value);
-    this.customerService.addCustomer(this.reactiveForm.value).subscribe((res: any) => {
+    this.customerService.createCustomer(this.reactiveForm.value).subscribe((res: any) => {
       console.log('Post created successfully!');
-      this.router.navigateByUrl('admin');
+      this.addCustomer();
     })
   }
 

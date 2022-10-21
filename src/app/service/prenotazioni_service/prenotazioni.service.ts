@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Prenotazioni} from "../../interfaces/prenotazioni";
+import {Customer} from "../../interfaces/customer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrenotazioniService {
 
-  private prenotazioniUrl = 'api/prenotazioni';
+  private prenotazioniUrl = "http://localhost:8080/api/prenotazione";
 
   constructor(private http: HttpClient) {
   }
@@ -20,11 +21,7 @@ export class PrenotazioniService {
 
   /** GET heroes from the server */
   getPrenotazioni(): Observable<Prenotazioni[]> {
-    return this.http.get<Prenotazioni[]>(this.prenotazioniUrl)
-      .pipe(
-        tap(_ => this.log('fetched prenotazione')),
-        catchError(this.handleError<Prenotazioni[]>('getPrenotazioni', []))
-      );
+    return this.http.get<Prenotazioni[]>(this.prenotazioniUrl);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

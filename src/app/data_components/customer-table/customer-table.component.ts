@@ -32,9 +32,7 @@ export class CustomerTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerService.getCustomers().subscribe(customers => {
-      this.customers = customers;
-    })
+    this.getCustomers();
     this.headers = [{
       key: "id",
       label: "ID"
@@ -89,14 +87,20 @@ export class CustomerTableComponent implements OnInit {
     this.tableConfig = {
       headers: this.headers, order: this.order, search: this.search, pagination: this.pagination, actions: this.actions
     }
+  }
 
-
+  private getCustomers() {
+    this.customerService.getCustomers().subscribe(customers => {
+      this.customers = customers;
+      console.log(customers)
+    })
   }
 
   onClickAction(event: any) {
     if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
       this.customerService.deleteCustomer(event.dataRow.id).subscribe(res => {
         this.customers = this.customers.filter((item: Customer) => item.id !== event.dataRow.id);
+        this.getCustomers();
       })
     } else if (event.action.buttonOnTop === true) {
       this.router.navigate(['admin/add'])

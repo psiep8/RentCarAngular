@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Auto} from "../../interfaces/auto";
+import {Customer} from "../../interfaces/customer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutoService {
 
-  private autoUrl = 'api/auto';
+  private autoUrl = "http://localhost:8080/api/auto";
 
   constructor(private http: HttpClient) {
   }
@@ -20,11 +21,7 @@ export class AutoService {
 
   /** GET heroes from the server */
   getAutos(): Observable<Auto[]> {
-    return this.http.get<Auto[]>(this.autoUrl)
-      .pipe(
-        tap(_ => this.log('fetched auto')),
-        catchError(this.handleError<Auto[]>('getAutos', []))
-      );
+    return this.http.get<Auto[]>(this.autoUrl);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -10,7 +10,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
 
 export const FAKE_JWT_TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdmRAZ21pYWwuY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjcyMjA4NzZ9.yaHqOXUNweIb8LZYhjy7nPOzTC34h2d9T9NcC9RDIoQ'
 export const TOKEN_HEADER_KEY = 'authorization';
 
 @Injectable()

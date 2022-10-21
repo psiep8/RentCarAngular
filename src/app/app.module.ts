@@ -24,8 +24,8 @@ import {PrenotazioniTableComponent} from './data_components/prenotazioni-table/p
 import {AutoTableComponent} from './data_components/auto-table/auto-table.component';
 import {AddCustomerComponent} from './crud_components/customers/add-customer/add-customer.component';
 import {AddAutoComponent} from './crud_components/auto/add-auto/add-auto.component';
-import { EditAutoComponent } from './crud_components/auto/edit-auto/edit-auto.component';
-import { EditCustomerComponent } from './crud_components/customers/edit-customer/edit-customer.component';
+import {EditAutoComponent} from './crud_components/auto/edit-auto/edit-auto.component';
+import {EditCustomerComponent} from './crud_components/customers/edit-customer/edit-customer.component';
 import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
 
 @NgModule({
@@ -61,9 +61,9 @@ import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
 // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
 // and returns simulated server responses.
 // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    )],
+    //HttpClientInMemoryWebApiModule.forRoot(
+    // InMemoryDataService
+  ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
