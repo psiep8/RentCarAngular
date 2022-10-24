@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Prenotazioni} from "../../interfaces/prenotazioni";
-import {Customer} from "../../interfaces/customer";
+import {Auto} from "../../interfaces/auto";
+import {AutoService} from "../auto_service/auto.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,69 +12,33 @@ export class PrenotazioniService {
 
   private prenotazioniUrl = "http://localhost:8080/api/prenotazione";
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient, private autoService: AutoService) {
   }
 
-  private log(message: string) {
-    console.log(`UserService: ${message}`);
-  }
-
-
-  /** GET heroes from the server */
   getPrenotazioni(): Observable<Prenotazioni[]> {
-    return this.http.get<Prenotazioni[]>(this.prenotazioniUrl);
+    return this.httpClient.get<Prenotazioni[]>(this.prenotazioniUrl);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  createPrenotazione(prenotazione: Prenotazioni): Observable<Object> {
+    console.log(prenotazione)
+    return this.httpClient.post((this.prenotazioniUrl + "/save"), prenotazione);
   }
 
-  /** GET hero by id. Will 404 if id not found */
-  getPrenotazione(id: number): Observable<Prenotazioni> {
-    const url = `${this.prenotazioniUrl}/${id}`;
-    return this.http.get<Prenotazioni>(url).pipe(
-      tap(_ => this.log(`fetched prenotazione id=${id}`)),
-      catchError(this.handleError<Prenotazioni>(`getPrenotazione id=${id}`))
-    );
+  getPrenotazioneById(id: number): Observable<Prenotazioni> {
+    return this.httpClient.get<Prenotazioni>(`${this.prenotazioniUrl}/${id}`);
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
-
-  /** PUT: update the hero on the server */
-  updatePrenotazione(prenotazioni: Prenotazioni): Observable<any> {
-    return this.http.put(this.prenotazioniUrl, prenotazioni, this.httpOptions).pipe(
-      tap(_ => this.log(`updated prenotazione id=${prenotazioni.id}`)),
-      catchError(this.handleError<any>('updatePrenotazione'))
-    );
+  updatePrenotazione(id: number, prenotazione: Prenotazioni): Observable<Object> {
+    return this.httpClient.put(`${this.prenotazioniUrl}/edit/${id}`, prenotazione);
   }
 
-  /** POST: add a new hero to the server */
-  addPrenotazione(prenotazioni: Prenotazioni): Observable<Prenotazioni> {
-    return this.http.post<Prenotazioni>(this.prenotazioniUrl, prenotazioni, this.httpOptions).pipe(
-      tap((newUser: Prenotazioni) => this.log(`added prenotazione w/ id=${prenotazioni.id}`)),
-      catchError(this.handleError<Prenotazioni>('addPrenotazione'))
-    );
+  deletePrenotazione(id: number): Observable<Object> {
+    return this.httpClient.delete(`${this.prenotazioniUrl}/delete/${id}`);
   }
 
-  /** DELETE: delete the hero from the server */
-  deletePrenotazione(id: number): Observable<Prenotazioni> {
-    const url = `${this.prenotazioniUrl}/${id}`;
-    return this.http.delete<Prenotazioni>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted prenotazione id=${id}`)),
-      catchError(this.handleError<Prenotazioni>('deletePrenotazione'))
-    );
-  }
+  /*getDataRange(inizio: any, fine: any): Observable<Auto[]> {
+    return this.httpClient.post(this.prenotazioniUrl + "/filterDate",this.autoService.getAutos())
+  }*/
+
 
 }

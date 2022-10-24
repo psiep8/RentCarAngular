@@ -13,7 +13,6 @@ import {Customer} from "../../../interfaces/customer";
 export class AddCustomerComponent implements OnInit {
 
   reactiveForm!: FormGroup;
-  customer!: Customer;
 
   constructor(private customerService: CustomerService, private router: Router) {
   }
@@ -25,9 +24,7 @@ export class AddCustomerComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
       dataNascita: new FormControl('', [Validators.required]),
-
     });
-
   }
 
   submit() {

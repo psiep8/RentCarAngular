@@ -10,6 +10,7 @@ import {
 import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazioni.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Prenotazioni} from "../../interfaces/prenotazioni";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-prenotazioni-table',
@@ -26,21 +27,12 @@ export class PrenotazioniTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  reactiveForm!: FormGroup;
-
-  constructor(private prenotazioniService: PrenotazioniService) {
+  constructor(private prenotazioniService: PrenotazioniService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.getPrenotazioni();
-    this.reactiveForm = new FormGroup({
-      dataInizio: new FormControl(null),
-      dataFine: new FormControl(null),
-    });
     this.headers = [{
-      key: "id",
-      label: "ID"
-    }, {
       key: "inizio",
       label: "Data Inizio"
     }, {
@@ -93,12 +85,14 @@ export class PrenotazioniTableComponent implements OnInit {
       this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
         this.prenotazioni = this.prenotazioni.filter((item: Prenotazioni) => item.id !== event.dataRow.id);
       })
-      /*} else if (event.action.buttonOnTop === true) {
-        this.router.navigate(['admin/add'])
-      } else {
-        this.router.navigate(['admin/edit', event.dataRow.id])
-      }*/
+    } else {
+      this.router.navigate(['user/filter', event.dataRow.id])
     }
   }
+
+  onFilter() {
+    this.router.navigateByUrl('user/filter')
+  }
+
 
 }

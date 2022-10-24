@@ -1,5 +1,5 @@
 <br>
-<h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta customer</p></h1>
+<h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Modifica customer</p></h1>
 <br>
 <div align="center" style="margin: auto">
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
@@ -21,10 +21,10 @@
       <label for="telefono">Telefono: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
-      <input type="date" id="dataDiNascita" formControlName="dataDiNascita" [(ngModel)]="customer.dataNascita"
+      <input type="date" id="dataNascita" formControlName="dataNascita" [(ngModel)]="customer.dataNascita"
              class="form-control">
-      <label for="dataDiNascita">Data di nascita: </label>
+      <label for="dataNascita">Data di nascita: </label>
     </div>
-    <button type="submit" class="btn btn-primary">Aggiungi</button>
+    <button type="submit" class="btn btn-primary">Modifica</button>
   </form>
 </div>

@@ -21,11 +21,8 @@ export class EditAutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.autoService.getAuto(this.id).subscribe((data: Auto) => {
+    this.autoService.getAutoById(this.id).subscribe((data: Auto) => {
       this.auto = data;
-      console.log(this.id)
-      console.log(this.auto)
-      console.log(this.auto.id)
     });
 
     this.reactiveForm = new FormGroup({
@@ -37,8 +34,7 @@ export class EditAutoComponent implements OnInit {
   }
 
   submit() {
-
-    this.autoService.updateAuto(this.reactiveForm.value).subscribe(res => {
+    this.autoService.updateAuto(this.id, this.reactiveForm.value).subscribe(res => {
       console.log('Post updated successfully!');
       this.router.navigateByUrl('auto');
     })

@@ -8,26 +8,29 @@ import {
 } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
+import {StorageService} from "./storage.service";
 
-export const FAKE_JWT_TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdmRAZ21pYWwuY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjcyMjA4NzZ9.yaHqOXUNweIb8LZYhjy7nPOzTC34h2d9T9NcC9RDIoQ'
-export const TOKEN_HEADER_KEY = 'authorization';
+//export const FAKE_JWT_TOKEN =
+ // 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdmRAZ21pYWwuY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE2NjcyMjA4NzZ9.yaHqOXUNweIb8LZYhjy7nPOzTC34h2d9T9NcC9RDIoQ'
+const TOKEN_HEADER = 'Authorization';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private token: StorageService) {
   }
 
-  intercept(
-    request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let authReq = request;
-    const token = FAKE_JWT_TOKEN;
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let authReq = req;
+    const token = this.token.getToken();
     if (token != null) {
-      authReq = request.clone({headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token)});
+      authReq = req.clone({
+        headers: req.headers.set(TOKEN_HEADER, 'Bearer ' + token)
+      });
     }
-    return next.handle(authReq);
+    return next.handle(authReq)
 
   }
+
 }
 
 export const AuthInterceptorProvider = {
@@ -35,4 +38,3 @@ export const AuthInterceptorProvider = {
   useClass: AuthInterceptor,
   multi: true,
 };
-

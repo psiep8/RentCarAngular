@@ -27,6 +27,8 @@ import {AddAutoComponent} from './crud_components/auto/add-auto/add-auto.compone
 import {EditAutoComponent} from './crud_components/auto/edit-auto/edit-auto.component';
 import {EditCustomerComponent} from './crud_components/customers/edit-customer/edit-customer.component';
 import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
+import {FilterDateComponent} from './crud_components/prenotazioni/filter-date/filter-date.component';
+import {EditDateComponent} from './crud_components/prenotazioni/edit-date/edit-date.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
     AddAutoComponent,
     EditAutoComponent,
     EditCustomerComponent,
+    FilterDateComponent,
+    EditDateComponent,
   ],
   imports: [
     BrowserModule,

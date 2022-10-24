@@ -1,35 +1,36 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {FAKE_JWT_TOKEN} from "./auth-interceptor";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+
+const AUTH_API = 'http://localhost:8080/api/login';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authURL = 'api/auth'
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  private setSession(token: any) {
-    sessionStorage.setItem(FAKE_JWT_TOKEN, token);
+  login(email: string, password: string): Observable<any> {
+    return this.httpClient.post(
+      AUTH_API,
+      {
+        email,
+        password,
+      },
+      httpOptions
+    );
   }
 
-  login(email: string, password: string) {
-    this.setSession(FAKE_JWT_TOKEN)
 
-    return {
-      username: email,
-      password: password,
-      token: FAKE_JWT_TOKEN
-    };
+  logout(): Observable<any> {
+    return this.httpClient.post(AUTH_API + 'signout', {}, httpOptions);
   }
 
-  deleteToken() {
-    sessionStorage.removeItem(FAKE_JWT_TOKEN)
-  }
-
-  getWelcome = (): Observable<any> => this.http.get('http://localhost:8080/api/welcome')
 }

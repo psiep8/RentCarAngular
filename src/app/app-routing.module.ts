@@ -9,6 +9,8 @@ import {AddCustomerComponent} from "./crud_components/customers/add-customer/add
 import {AddAutoComponent} from "./crud_components/auto/add-auto/add-auto.component";
 import {EditAutoComponent} from "./crud_components/auto/edit-auto/edit-auto.component";
 import {EditCustomerComponent} from "./crud_components/customers/edit-customer/edit-customer.component";
+import {FilterDateComponent} from "./crud_components/prenotazioni/filter-date/filter-date.component";
+import {EditDateComponent} from "./crud_components/prenotazioni/edit-date/edit-date.component";
 
 const routes: Routes = [
   {
@@ -35,7 +37,17 @@ const routes: Routes = [
   }, {
     path: 'auto/edit/:id',
     component: EditAutoComponent
-  }
+  }, {
+    path: 'user/filter',
+    component: FilterDateComponent
+  }, {
+    path: 'user/filter/:id',
+    component: EditDateComponent
+  }/*, {
+    path: 'auto/listAutoRange',
+     component:
+  }*/
+
 ]
 
 @NgModule({

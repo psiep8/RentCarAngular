@@ -25,9 +25,7 @@ export class EditCustomerComponent implements OnInit {
     console.log(this.id)
     this.customerService.getCustomerById(this.id).subscribe((customer: Customer) => {
       this.customer = customer;
-      console.log(this.customer)
-      console.log(this.customer.id)
-    });
+    }, error => console.log(error));
 
     this.reactiveForm = new FormGroup({
       id: new FormControl('', [Validators.required]),
@@ -35,7 +33,7 @@ export class EditCustomerComponent implements OnInit {
       cognome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
-      dataDiNascita: new FormControl('', [Validators.required]),
+      dataNascita: new FormControl('', [Validators.required]),
     });
   }
 

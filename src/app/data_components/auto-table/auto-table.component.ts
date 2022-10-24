@@ -30,13 +30,8 @@ export class AutoTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.autoService.getAutos().subscribe(auto => {
-      this.auto = auto;
-    })
+    this.getAutos();
     this.headers = [{
-      key: "id",
-      label: "ID"
-    }, {
       key: "marca",
       label: "Marca"
     }, {
@@ -81,6 +76,12 @@ export class AutoTableComponent implements OnInit {
       headers: this.headers, order: this.order, search: this.search, pagination: this.pagination, actions: this.actions
     }
 
+  }
+
+  getAutos() {
+    this.autoService.getAutos().subscribe(auto => {
+      this.auto = auto;
+    })
   }
 
   onClickAction(event: any) {
