@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {AuthService} from "../../service/login/auth.service";
-import {StorageService} from "../../service/login/storage.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -12,40 +12,40 @@ import {StorageService} from "../../service/login/storage.service";
 export class LoginComponent implements OnInit {
 
   reactiveForm!: FormGroup;
-  roles: string[] = [];
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router, private storageService: StorageService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
-    if (this.storageService.getToken()) {
-      this.roles = this.storageService.getUser().roles;
-      console.log(this.roles)
-    }
     this.reactiveForm = new FormGroup(
       {
         email: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required])
       })
-    console.log(this.reactiveForm)
+
   }
 
   onSubmit(): void {
-    this.authService.login(this.reactiveForm.value.email, this.reactiveForm.value.password).subscribe({
-      next: data => {
-        this.storageService.saveToken(data.accessToken)
-        this.storageService.saveUser(data);
+    this.authService.login(this.reactiveForm.value.email, this.reactiveForm.value.password).subscribe(
+      (data: any) => {
+        localStorage.setItem('token', data.token);
         this.isLoginFailed = false;
-        this.roles = this.storageService.getUser().roles;
-        window.location.reload();
+        let jwtData = data.token.split('.')[1]
+        let decodedJwtJsonData = window.atob(jwtData)
+        let decodedJwtData = JSON.parse(decodedJwtJsonData)
+        let role = decodedJwtData.role
+        if (role === "ROLE_ADMIN") {
+          this.router.navigateByUrl('admin')
+        } else {
+          this.router.navigateByUrl('user')
+        }
       },
-      error: err => {
+      (err: any) => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
-      }
-    });
+      });
   }
 
 }

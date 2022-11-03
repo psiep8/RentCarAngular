@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
+import {Observable, tap} from "rxjs";
 
-const AUTH_API = 'http://localhost:8080/api/login';
+const AUTH_API = 'http://localhost:8080/';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,24 +14,18 @@ const httpOptions = {
 })
 export class AuthService {
 
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.httpClient.post(
-      AUTH_API,
-      {
-        email,
-        password,
-      },
-      httpOptions
-    );
+    return this.http.post(AUTH_API + 'login', null, {
+      params: {
+        email: email,
+        password: password
+      }, ...httpOptions
+    });
   }
 
 
-  logout(): Observable<any> {
-    return this.httpClient.post(AUTH_API + 'signout', {}, httpOptions);
-  }
 
 }
