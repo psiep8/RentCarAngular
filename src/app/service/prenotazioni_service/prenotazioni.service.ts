@@ -19,26 +19,29 @@ export class PrenotazioniService {
     return this.httpClient.get<Prenotazioni[]>(this.prenotazioniUrl);
   }
 
-  createPrenotazione(prenotazione: Prenotazioni): Observable<Object> {
+  createPrenotazione(prenotazione: Prenotazioni, idAuto: number): Observable<Object> {
     console.log(prenotazione)
-    return this.httpClient.post((this.prenotazioniUrl + "/save"), prenotazione);
+    return this.httpClient.post((this.prenotazioniUrl + "/save"), prenotazione, {
+      params: {
+        autoID: idAuto
+      }
+    });
   }
 
   getPrenotazioneById(id: number): Observable<Prenotazioni> {
     return this.httpClient.get<Prenotazioni>(`${this.prenotazioniUrl}/${id}`);
   }
 
-  updatePrenotazione(id: number, prenotazione: Prenotazioni): Observable<Object> {
-    return this.httpClient.put(`${this.prenotazioniUrl}/edit/${id}`, prenotazione);
+  updatePrenotazione(id: number, prenotazione: Prenotazioni, idAuto: number): Observable<Object> {
+    return this.httpClient.put(`${this.prenotazioniUrl}/edit`, prenotazione, {
+      params: {
+        autoID: idAuto
+      }
+    });
   }
 
   deletePrenotazione(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.prenotazioniUrl}/delete/${id}`);
   }
-
-  /*getDataRange(inizio: any, fine: any): Observable<Auto[]> {
-    return this.httpClient.post(this.prenotazioniUrl + "/filterDate",this.autoService.getAutos())
-  }*/
-
 
 }

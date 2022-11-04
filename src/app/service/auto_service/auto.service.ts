@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {catchError, Observable, of, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Auto} from "../../interfaces/auto";
 import {Customer} from "../../interfaces/customer";
+import {Moment} from "moment";
+import {Observable} from "rxjs";
+import {Subject} from "rxjs/internal/Subject";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class AutoService {
 
   createAuto(auto: Auto): Observable<Object> {
     console.log(auto)
-    return this.httpClient.post((this.autoUrl + "/save"), auto );
+    return this.httpClient.post((this.autoUrl + "/save"), auto);
   }
 
   getAutoById(id: number): Observable<Auto> {
@@ -29,10 +31,21 @@ export class AutoService {
 
   updateAuto(id: number, auto: Auto): Observable<Object> {
     console.log(auto)
-    return this.httpClient.put(`${this.autoUrl}/edit/${id}`, auto);
+    return this.httpClient.put(`${this.autoUrl}/filterDate`, auto);
   }
 
   deleteAuto(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.autoUrl}/delete/${id}`);
   }
+
+  getAutoInRange(inizio: any, fine: any): Observable<Object> {
+    return this.httpClient.get((this.autoUrl + "/filterDate"), {
+      params: {
+        inizio: inizio,
+        fine: fine
+      },
+    });
+  }
+
+
 }

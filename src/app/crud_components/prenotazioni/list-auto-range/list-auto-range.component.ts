@@ -1,0 +1,127 @@
+import {Component, OnInit} from '@angular/core';
+import {
+  MyHeaders,
+  MyOrder,
+  MyPagination,
+  MySearch,
+  MyTableActions,
+  MyTableConfig
+} from "../../../components/tabella/myclasses";
+import {AutoService} from "../../../service/auto_service/auto.service";
+import {Router} from "@angular/router";
+import {Auto} from "../../../interfaces/auto";
+import {PrenotazioniService} from "../../../service/prenotazioni_service/prenotazioni.service";
+import * as moment from "moment";
+import {HttpClient} from "@angular/common/http";
+import {Prenotazioni} from "../../../interfaces/prenotazioni";
+import {CustomerService} from "../../../service/customer_service/customer.service";
+
+@Component({
+  selector: 'app-list-auto-range',
+  templateUrl: './list-auto-range.component.html',
+  styleUrls: ['./list-auto-range.component.css']
+})
+export class ListAutoRangeComponent implements OnInit {
+
+  auto: any = [];
+
+  tableConfig!: MyTableConfig;
+  order!: MyOrder;
+  search!: MySearch;
+  pagination!: MyPagination;
+  headers!: MyHeaders[];
+  actions!: MyTableActions[];
+
+
+  dataInizio!: any;
+  dataFine!: any;
+
+  variableID!: any;
+  token!: any;
+  id!: number;
+
+  constructor(private autoService: AutoService, private prenotazioneService: PrenotazioniService, private router: Router, private customerService: CustomerService) {
+  }
+
+  ngOnInit(): void {
+    this.dataInizio = sessionStorage.getItem("startDate");
+    this.dataFine = sessionStorage.getItem("endDate");
+
+    this.getAutos();
+
+    this.headers = [{
+      key: "marca",
+      label: "Marca"
+    }, {
+      key: "modello",
+      label: "Modello"
+    }, {
+      key: "cilindrata",
+      label: "Cilindrata"
+    }]
+    this.search = {
+      columns: ["id", "marca", "modello", "cilindrata"],
+      filterAllowed: false
+    }
+    this.order = {
+      defaultColumn: "id", orderType: "desc"
+    }
+    this.pagination = {
+      itemPerPage: 5, itemPerPageOptions: [5, 10]
+    }
+    this.actions = [{
+      icon: "",
+      label: "Prenota",
+      customCssClass: "btn btn-primary",
+      buttonOnTop: false,
+      buttonEdit: false
+    }]
+
+    this.tableConfig = {
+      headers: this.headers, order: this.order, search: this.search, pagination: this.pagination, actions: this.actions
+    }
+  }
+
+  getAutos() {
+    this.autoService.getAutoInRange(this.dataInizio, this.dataFine).subscribe(auto => {
+      this.auto = auto;
+    })
+  }
+
+  onClickAction(event: any) {
+    const rentToAdd: Prenotazioni = {
+      id: 0,
+      dataInizio: this.dataInizio,
+      dataFine: this.dataFine,
+      approvata: false
+    };
+
+    this.variableID = sessionStorage.getItem("idPrenotazione")
+    this.id = +this.variableID
+
+    const rentToEdit: Prenotazioni = {
+      id: this.id,
+      dataInizio: this.dataInizio,
+      dataFine: this.dataFine,
+      approvata: false
+    };
+
+
+    if (this.id) {
+      this.prenotazioneService.updatePrenotazione(this.id, rentToEdit, event.dataRow.id).subscribe(() => {
+        sessionStorage.removeItem("idPrenotazione")
+        sessionStorage.removeItem("startDate");
+        sessionStorage.removeItem("endDate");
+        this.router.navigateByUrl('user')
+      })
+    } else {
+      this.prenotazioneService.createPrenotazione(rentToAdd, event.dataRow.id).subscribe(() => {
+        sessionStorage.removeItem("startDate");
+        sessionStorage.removeItem("endDate");
+        this.router.navigateByUrl('user')
+      })
+    }
+  }
+
+
+}

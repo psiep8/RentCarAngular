@@ -11,6 +11,8 @@ import {EditAutoComponent} from "./crud_components/auto/edit-auto/edit-auto.comp
 import {EditCustomerComponent} from "./crud_components/customers/edit-customer/edit-customer.component";
 import {FilterDateComponent} from "./crud_components/prenotazioni/filter-date/filter-date.component";
 import {EditDateComponent} from "./crud_components/prenotazioni/edit-date/edit-date.component";
+import {ListAutoRangeComponent} from "./crud_components/prenotazioni/list-auto-range/list-auto-range.component";
+import {ListPrenotazioniComponent} from "./crud_components/customers/list-prenotazioni/list-prenotazioni.component";
 
 const routes: Routes = [
   {
@@ -43,10 +45,13 @@ const routes: Routes = [
   }, {
     path: 'user/filter/:id',
     component: EditDateComponent
-  }/*, {
-    path: 'auto/listAutoRange',
-     component:
-  }*/
+  }, {
+    path: 'user/listAutoRange',
+    component: ListAutoRangeComponent
+  }, {
+    path: 'admin/prenotazioni',
+    component: ListPrenotazioniComponent
+  }
 
 ]
 

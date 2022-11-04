@@ -1,3 +1,10 @@
+<br>
+<div class="container" style="width: 15%">
+  <button class="w-100 btn btn-lg btn-outline-primary" type="submit" (click)="onPrenotazioni()">
+    Prenotazioni da approvare
+  </button>
+</div>
+
+
 <app-tabella [data]="customers" [tableConfig]="tableConfig" [actionConfig]="actions"
              (outputTable)="onClickAction($event)"></app-tabella>
-

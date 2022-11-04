@@ -106,4 +106,8 @@ export class CustomerTableComponent implements OnInit {
     }
   }
 
+  onPrenotazioni(){
+    this.router.navigateByUrl("admin/prenotazioni")
+  }
+
 }

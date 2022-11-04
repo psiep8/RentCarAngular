@@ -29,6 +29,8 @@ import {EditCustomerComponent} from './crud_components/customers/edit-customer/e
 import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
 import {FilterDateComponent} from './crud_components/prenotazioni/filter-date/filter-date.component';
 import {EditDateComponent} from './crud_components/prenotazioni/edit-date/edit-date.component';
+import { ListAutoRangeComponent } from './crud_components/prenotazioni/list-auto-range/list-auto-range.component';
+import { ListPrenotazioniComponent } from './crud_components/customers/list-prenotazioni/list-prenotazioni.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import {EditDateComponent} from './crud_components/prenotazioni/edit-date/edit-d
     EditCustomerComponent,
     FilterDateComponent,
     EditDateComponent,
+    ListAutoRangeComponent,
+    ListPrenotazioniComponent,
   ],
   imports: [
     BrowserModule,

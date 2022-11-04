@@ -1,8 +1,10 @@
 import * as moment from "moment/moment";
+import {Customer} from "./customer";
+import {Auto} from "./auto";
 
 export interface Prenotazioni {
   id: number;
-  inizio: moment.Moment;
-  fine: moment.Moment;
+  dataInizio: moment.Moment;
+  dataFine: moment.Moment;
   approvata?: boolean;
 }

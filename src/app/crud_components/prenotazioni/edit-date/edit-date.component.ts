@@ -37,9 +37,10 @@ export class EditDateComponent implements OnInit {
 
   submit() {
     console.log(this.reactiveForm.value);
-    this.prenotazioneService.updatePrenotazione(this.id, this.reactiveForm.value).subscribe(res => {
-      console.log('Post updated successfully!');
-      this.router.navigateByUrl('auto/listAutoRange');
-    })
+    sessionStorage.setItem("startDate", this.reactiveForm.value.dataInizio);
+    sessionStorage.setItem("endDate", this.reactiveForm.value.dataFine);
+    sessionStorage.setItem("idPrenotazione", this.id.toString())
+    this.router.navigateByUrl('user/listAutoRange');
+
   }
 }

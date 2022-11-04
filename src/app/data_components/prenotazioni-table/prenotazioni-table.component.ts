@@ -11,6 +11,7 @@ import {PrenotazioniService} from "../../service/prenotazioni_service/prenotazio
 import {FormControl, FormGroup} from "@angular/forms";
 import {Prenotazioni} from "../../interfaces/prenotazioni";
 import {Route, Router} from "@angular/router";
+import {Customer} from "../../interfaces/customer";
 
 @Component({
   selector: 'app-prenotazioni-table',
@@ -33,14 +34,14 @@ export class PrenotazioniTableComponent implements OnInit {
   ngOnInit(): void {
     this.getPrenotazioni();
     this.headers = [{
-      key: "inizio",
+      key: "dataInizio",
       label: "Data Inizio"
     }, {
-      key: "fine",
+      key: "dataFine",
       label: "Data Fine"
     }]
     this.search = {
-      columns: ["id", "inizio", "fine"],
+      columns: ["id", "dataInizio", "dataFine"],
       filterAllowed: false
     }
     this.order = {
@@ -77,22 +78,23 @@ export class PrenotazioniTableComponent implements OnInit {
   }
 
   getPrenotazioni(): void {
-    this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => this.prenotazioni = prenotazioni);
+    this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => {
+      this.prenotazioni = prenotazioni;
+      console.log(prenotazioni)
+    });
   }
 
   onClickAction(event: any) {
     if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
       this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
-        this.prenotazioni = this.prenotazioni.filter((item: Prenotazioni) => item.id !== event.dataRow.id);
+        this.prenotazioni = this.prenotazioni.filter((item: Customer) => item.id !== event.dataRow.id);
+        this.getPrenotazioni();
       })
+    } else if (event.action.buttonOnTop === true) {
+      this.router.navigateByUrl('user/filter')
     } else {
       this.router.navigate(['user/filter', event.dataRow.id])
     }
   }
-
-  onFilter() {
-    this.router.navigateByUrl('user/filter')
-  }
-
 
 }
