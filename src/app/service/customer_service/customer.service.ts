@@ -23,7 +23,7 @@ export class CustomerService {
   }
 
   approvaPrenotazione(id: number): Observable<Object> {
-    return this.httpClient.post("http://localhost:8080/api/prenotazione/approvata", null, {
+    return this.httpClient.post(this.customersUrl + "/approvata", null, {
       params: {
         prenotazioneID: id
       }

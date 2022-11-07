@@ -2,6 +2,7 @@
     width: 50%;
     padding: 10px;">
   <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedField">
+    <option value="" disabled selected>Seleziona il campo da filtrare</option>
     <option *ngFor="let column of columns" [value]="column">{{column}}</option>
   </select>
   <div class="form-outline">

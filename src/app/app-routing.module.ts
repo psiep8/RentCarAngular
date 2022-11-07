@@ -13,6 +13,7 @@ import {FilterDateComponent} from "./crud_components/prenotazioni/filter-date/fi
 import {EditDateComponent} from "./crud_components/prenotazioni/edit-date/edit-date.component";
 import {ListAutoRangeComponent} from "./crud_components/prenotazioni/list-auto-range/list-auto-range.component";
 import {ListPrenotazioniComponent} from "./crud_components/customers/list-prenotazioni/list-prenotazioni.component";
+import {AuthGuard} from "./service/login/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -20,37 +21,57 @@ const routes: Routes = [
     component: LoginComponent,
   }, {
     path: 'admin',
-    component: CustomerTableComponent
+    component: CustomerTableComponent,
+    canActivate: [AuthGuard]
   }, {
     path: 'user',
-    component: PrenotazioniTableComponent
+    component: PrenotazioniTableComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'auto',
-    component: AutoTableComponent
+    component: AutoTableComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'admin/add',
-    component: AddCustomerComponent
+    component: AddCustomerComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'admin/edit/:id',
-    component: EditCustomerComponent
+    component: EditCustomerComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'auto/add',
-    component: AddAutoComponent
+    component: AddAutoComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'auto/edit/:id',
-    component: EditAutoComponent
+    component: EditAutoComponent, canActivate: [AuthGuard]
+
   }, {
     path: 'user/filter',
-    component: FilterDateComponent
+    component: FilterDateComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'user/filter/:id',
-    component: EditDateComponent
+    component: EditDateComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'user/listAutoRange',
-    component: ListAutoRangeComponent
+    component: ListAutoRangeComponent,
+    canActivate: [AuthGuard]
+
   }, {
     path: 'admin/prenotazioni',
-    component: ListPrenotazioniComponent
+    component: ListPrenotazioniComponent,
+    canActivate: [AuthGuard]
+
   }
 
 ]

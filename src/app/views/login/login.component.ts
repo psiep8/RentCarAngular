@@ -32,10 +32,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         localStorage.setItem('token', data.token);
         this.isLoginFailed = false;
-        let jwtData = data.token.split('.')[1]
-        let decodedJwtJsonData = window.atob(jwtData)
-        let decodedJwtData = JSON.parse(decodedJwtJsonData)
-        let role = decodedJwtData.role
+        let role = this.authService.getRole(data.token);
         if (role === "ROLE_ADMIN") {
           this.router.navigateByUrl('admin')
         } else {
