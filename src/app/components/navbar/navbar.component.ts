@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/login/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Customer} from "../../interfaces/customer";
+import {CustomerService} from "../../service/customer_service/customer.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +12,11 @@ import {Router} from "@angular/router";
 export class NavbarComponent implements OnInit {
 
   token!: any;
+  email!: any;
+  customer!: Customer;
+  id!: number;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router, private customerService: CustomerService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -28,7 +33,14 @@ export class NavbarComponent implements OnInit {
   }
 
   onProfile() {
-    this.router.navigateByUrl("admin")
+    this.email = this.authService.getEmail(this.token);
+    this.customerService.getUserByEmail(this.email).subscribe(data => {
+        this.customer = data;
+        console.log(this.customer);
+        console.log(this.customer.id)
+        this.router.navigate(['admin/edit', this.customer.id]);
+      }
+    )
   }
 
   toHome() {

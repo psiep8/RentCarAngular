@@ -31,7 +31,7 @@ export class AutoService {
 
   updateAuto(id: number, auto: Auto): Observable<Object> {
     console.log(auto)
-    return this.httpClient.put(`${this.autoUrl}/filterDate`, auto);
+    return this.httpClient.put(`${this.autoUrl}/edit`, auto);
   }
 
   deleteAuto(id: number): Observable<Object> {

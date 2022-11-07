@@ -51,12 +51,18 @@ export class AuthService {
   }
 
   getUser(token: string): Customer {
+    console.log(JSON.parse(atob(token.split('.')[1])) as Customer)
     return JSON.parse(atob(token.split('.')[1])) as Customer;
   }
 
   getRole(token: string): string {
     let jwtData = JSON.parse(atob(token.split('.')[1]))
     return jwtData.role;
+  }
+
+  getEmail(token: string): string {
+    let jwtData = JSON.parse(atob(token.split('.')[1]))
+    return jwtData.sub;
   }
 
   logout() {

@@ -35,6 +35,14 @@ export class CustomerService {
     return this.httpClient.post((this.customersUrl + "/save"), customer);
   }
 
+  getUserByEmail(email: string): Observable<Customer> {
+    return this.httpClient.get<Customer>(`${this.customersUrl}/email`, {
+      params: {
+        email: email
+      }
+    });
+  }
+
   getCustomerById(id: number): Observable<Customer> {
     return this.httpClient.get<Customer>(`${this.customersUrl}/${id}`);
   }
