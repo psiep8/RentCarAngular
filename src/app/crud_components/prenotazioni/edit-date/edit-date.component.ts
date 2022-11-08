@@ -32,6 +32,7 @@ export class EditDateComponent implements OnInit {
     this.reactiveForm = new FormGroup({
       dataInizio: new FormControl('', [Validators.required]),
       dataFine: new FormControl('', [Validators.required]),
+      approvata: new FormControl('', [Validators.required])
     });
   }
 

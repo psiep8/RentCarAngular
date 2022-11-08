@@ -2,7 +2,7 @@ import {Moment} from 'moment';
 import * as moment from "moment";
 
 export interface Customer {
-  id: number;
+  idUtente: number;
   nome: string;
   cognome: string;
   password?: string;

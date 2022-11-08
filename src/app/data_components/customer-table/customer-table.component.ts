@@ -50,11 +50,11 @@ export class CustomerTableComponent implements OnInit {
       label: "Data di nascita"
     }]
     this.search = {
-      columns: ["id", "nome", "cognome", "email", "telefono", "dataNascita"],
+      columns: ["idUtente", "nome", "cognome", "email", "telefono", "dataNascita"],
       filterAllowed: true
     }
     this.order = {
-      defaultColumn: "id", orderType: "desc"
+      defaultColumn: "idUtente", orderType: "desc"
     }
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]
@@ -95,14 +95,14 @@ export class CustomerTableComponent implements OnInit {
 
   onClickAction(event: any) {
     if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
-      this.customerService.deleteCustomer(event.dataRow.id).subscribe(res => {
-        this.customers = this.customers.filter((item: Customer) => item.id !== event.dataRow.id);
+      this.customerService.deleteCustomer(event.dataRow.idUtente).subscribe(res => {
+        this.customers = this.customers.filter((item: Customer) => item.idUtente !== event.dataRow.id);
         this.getCustomers();
       })
     } else if (event.action.buttonOnTop === true) {
       this.router.navigate(['admin/add'])
     } else {
-      this.router.navigate(['admin/edit', event.dataRow.id])
+      this.router.navigate(['admin/edit', event.dataRow.idUtente])
     }
   }
 

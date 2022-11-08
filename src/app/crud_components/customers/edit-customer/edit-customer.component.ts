@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Customer} from "../../../interfaces/customer";
 import {CustomerService} from "../../../service/customer_service/customer.service";
+import {AuthService} from "../../../service/login/auth.service";
 
 @Component({
   selector: 'app-edit-customer',
@@ -14,9 +15,10 @@ export class EditCustomerComponent implements OnInit {
   id!: number;
   customer!: Customer;
   reactiveForm!: FormGroup;
+  token!: any;
 
   constructor(
-    private route: ActivatedRoute, private customerService: CustomerService, private router: Router
+    private route: ActivatedRoute, private customerService: CustomerService, private router: Router, private authService: AuthService
   ) {
   }
 
@@ -28,12 +30,13 @@ export class EditCustomerComponent implements OnInit {
     }, error => console.log(error));
 
     this.reactiveForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
+      idUtente: new FormControl('', [Validators.required]),
       nome: new FormControl('', [Validators.required]),
       cognome: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       telefono: new FormControl('', [Validators.required]),
       dataNascita: new FormControl('', [Validators.required]),
+      customer: new FormControl('', [Validators.required])
     });
   }
 
@@ -41,7 +44,13 @@ export class EditCustomerComponent implements OnInit {
     console.log(this.reactiveForm.value);
     this.customerService.updateCustomer(this.id, this.reactiveForm.value).subscribe(res => {
       console.log('Post updated successfully!');
-      this.router.navigateByUrl('admin');
+      this.token = localStorage.getItem("token");
+      let role = this.authService.getRole(this.token);
+      if (role === "ROLE_ADMIN") {
+        this.router.navigateByUrl('admin');
+      } else if (role === "ROLE_USER") {
+        this.router.navigateByUrl("user")
+      }
     })
   }
 }

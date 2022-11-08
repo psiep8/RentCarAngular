@@ -21,8 +21,8 @@ export class AddCustomerComponent implements OnInit {
     this.reactiveForm = new FormGroup({
       nome: new FormControl('', [Validators.required]),
       cognome: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      telefono: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      telefono: new FormControl('', [Validators.min(10)]),
       dataNascita: new FormControl('', [Validators.required]),
     });
   }

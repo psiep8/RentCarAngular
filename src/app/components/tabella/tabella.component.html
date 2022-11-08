@@ -16,7 +16,7 @@
     <tr>{{headers.label}}</tr>
     <i [ngClass]="[sortedOrder==='asc' ? 'arrow up' : 'arrow down']"></i>
   </th>
-  <th class="accordion-header"><i>Operazioni</i></th>
+  <th class="accordion-header" *ngIf="actionConfig!=null"><i>Operazioni</i></th>
   </thead>
   <tbody>
   <tr
@@ -24,13 +24,15 @@
     <td *ngFor="let headers of tableConfig.headers">
       {{ dataRow[headers.key]}}
     </td>
-    <th>
-      <div *ngFor="let actions of actionConfig">
-        <app-button *ngIf="actions.buttonOnTop===false" (click)="onClickButton(actions,dataRow)" [buttonConfig]=
-          "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
-        </app-button>
-      </div>
-    </th>
+    <div *ngIf="actionConfig!=null">
+      <th>
+        <div *ngFor="let actions of actionConfig">
+          <app-button *ngIf="actions.buttonOnTop===false" (click)="onClickButton(actions,dataRow)" [buttonConfig]=
+            "{icon:actions.icon, label:actions.label, customCssClass:actions.customCssClass}">
+          </app-button>
+        </div>
+      </th>
+    </div>
   </tr>
 
 

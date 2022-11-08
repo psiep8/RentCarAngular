@@ -87,7 +87,7 @@ export class PrenotazioniTableComponent implements OnInit {
   onClickAction(event: any) {
     if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
       this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
-        this.prenotazioni = this.prenotazioni.filter((item: Customer) => item.id !== event.dataRow.id);
+        this.prenotazioni = this.prenotazioni.filter((item: Customer) => item.idUtente !== event.dataRow.id);
         this.getPrenotazioni();
       })
     } else if (event.action.buttonOnTop === true) {

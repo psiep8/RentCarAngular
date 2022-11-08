@@ -10,6 +10,8 @@
       <input type="date" id="dataFine" formControlName="dataFine" [(ngModel)]="prenotazione.dataFine"
              class="form-control">
       <label for="dataFine">Data di fine: </label>
+      <input type="hidden" id="approvata" formControlName="approvata" [(ngModel)]="prenotazione.approvata"
+             class="form-control">
     </div>
     <button type="submit" class="btn btn-primary">Check</button>
   </form>

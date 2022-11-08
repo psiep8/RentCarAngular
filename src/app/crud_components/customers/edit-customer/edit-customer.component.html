@@ -3,7 +3,7 @@
 <br>
 <div align="center" style="margin: auto">
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
-    <input type="hidden" id="id" formControlName="id" [(ngModel)]="customer.id" class="form-control">
+    <input type="hidden" id="idUtente" formControlName="idUtente" [(ngModel)]="customer.idUtente" class="form-control">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="nome" formControlName="nome" [(ngModel)]="customer.nome" class="form-control">
       <label for="nome">Nome: </label>
@@ -24,6 +24,8 @@
       <input type="date" id="dataNascita" formControlName="dataNascita" [(ngModel)]="customer.dataNascita"
              class="form-control">
       <label for="dataNascita">Data di nascita: </label>
+      <input type="hidden" id="customer" formControlName="customer" [(ngModel)]="customer.customer"
+             class="form-control">
     </div>
     <button type="submit" class="btn btn-primary">Modifica</button>
   </form>

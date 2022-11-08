@@ -10,6 +10,7 @@ import {
 import {AutoService} from "../../service/auto_service/auto.service";
 import {Auto} from "../../interfaces/auto";
 import {Router, RouterLink} from "@angular/router";
+import {AuthService} from "../../service/login/auth.service";
 
 @Component({
   selector: 'app-auto-table',
@@ -17,6 +18,7 @@ import {Router, RouterLink} from "@angular/router";
   styleUrls: ['./auto-table.component.css']
 })
 export class AutoTableComponent implements OnInit {
+
   auto: any = [];
 
   tableConfig!: MyTableConfig;
@@ -26,10 +28,14 @@ export class AutoTableComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-  constructor(private autoService: AutoService, private router: Router) {
+  token!: any;
+
+  constructor(private autoService: AutoService, private router: Router, public authService: AuthService) {
   }
 
   ngOnInit(): void {
+    this.token = localStorage.getItem("token")
+    let role = this.authService.getRole(this.token)
     this.getAutos();
     this.headers = [{
       key: "marca",
@@ -51,30 +57,31 @@ export class AutoTableComponent implements OnInit {
     this.pagination = {
       itemPerPage: 2, itemPerPageOptions: [2, 3, 5]
     }
-    this.actions = [{
-      icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
-      label: "Aggiungi nuova auto",
-      customCssClass: "btn btn-dark",
-      buttonOnTop: true,
-      buttonEdit: false
-    }, {
-      icon: "https://static.thenounproject.com/png/1054395-200.png",
-      label: "Modifica",
-      customCssClass: "btn btn-secondary",
-      buttonOnTop: false,
-      buttonEdit: true
-
-    }, {
-      icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
-      label: "Elimina",
-      customCssClass: "btn btn-primary",
-      buttonOnTop: false,
-      buttonEdit: false
-    }
-    ]
+    if (role === "ROLE_ADMIN")
+      this.actions = [{
+        icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
+        label: "Aggiungi nuova auto",
+        customCssClass: "btn btn-dark",
+        buttonOnTop: true,
+        buttonEdit: false
+      }, {
+        icon: "https://static.thenounproject.com/png/1054395-200.png",
+        label: "Modifica",
+        customCssClass: "btn btn-secondary",
+        buttonOnTop: false,
+        buttonEdit: true
+      }, {
+        icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
+        label: "Elimina",
+        customCssClass: "btn btn-primary",
+        buttonOnTop: false,
+        buttonEdit: false
+      }]
     this.tableConfig = {
-      headers: this.headers, order: this.order, search: this.search, pagination: this.pagination, actions: this.actions
+      headers: this.headers, order: this.order, search: this.search, pagination: this.pagination,
+      actions: this.actions
     }
+
 
   }
 

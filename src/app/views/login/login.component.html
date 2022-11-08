@@ -4,8 +4,9 @@
     <h1 class="h3 mb-3 fw-normal">Benvenuto in RentCar</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="Indirizzo email" formControlName="email"
-             required>
+      <input type="email" class="form-control" id="email" placeholder="Indirizzo email" formControlName="email"/>
+      <div *ngIf="reactiveForm.get('email')?.errors" class="text-danger"> Richiesto indirizzo email! </div>
+
       <label for="email">Indirizzo email</label>
     </div>
     <div class="form-floating">
