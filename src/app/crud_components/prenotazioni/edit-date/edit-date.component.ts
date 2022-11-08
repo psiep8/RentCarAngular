@@ -24,7 +24,6 @@ export class EditDateComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id)
     this.prenotazioneService.getPrenotazioneById(this.id).subscribe((prenotazione: Prenotazioni) => {
       this.prenotazione = prenotazione;
     }, error => console.log(error));
@@ -37,7 +36,6 @@ export class EditDateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.reactiveForm.value);
     sessionStorage.setItem("startDate", this.reactiveForm.value.dataInizio);
     sessionStorage.setItem("endDate", this.reactiveForm.value.dataFine);
     sessionStorage.setItem("idPrenotazione", this.id.toString())

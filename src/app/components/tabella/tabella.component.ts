@@ -70,12 +70,6 @@ export class TabellaComponent implements OnInit {
 
   onClickButton(action: MyTableActions, dataRow: any) {
     this.outputTable.emit({action, dataRow})
-    console.log(action)
-    console.log(dataRow)
-  }
-
-  addNewItem(action: MyTableActions) {
-    this.outputTable.emit({action});
   }
 
 }

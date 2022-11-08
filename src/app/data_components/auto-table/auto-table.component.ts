@@ -95,8 +95,6 @@ export class AutoTableComponent implements OnInit {
     if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
       this.autoService.deleteAuto(event.dataRow.id).subscribe(res => {
         this.auto = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
-        console.log('Post deleted successfully on auto-table component!');
-        console.log(this.auto)
       })
     } else if (event.action.buttonOnTop === true) {
       this.router.navigate(['auto/add'])

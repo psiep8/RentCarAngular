@@ -65,7 +65,6 @@ export class ListPrenotazioniComponent implements OnInit {
   getPrenotazioni(): void {
     this.customerService.getPrenotazioni().subscribe(prenotazioni => {
       this.prenotazioni = prenotazioni;
-      console.log(prenotazioni)
     });
   }
 

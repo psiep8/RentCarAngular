@@ -31,7 +31,6 @@ export class CustomerService {
   }
 
   createCustomer(customer: Customer): Observable<Object> {
-    console.log(customer)
     return this.httpClient.post((this.customersUrl + "/save"), customer);
   }
 

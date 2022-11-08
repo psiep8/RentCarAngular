@@ -51,7 +51,6 @@ export class AuthService {
   }
 
   getUser(token: string): Customer {
-    console.log(JSON.parse(atob(token.split('.')[1])) as Customer)
     return JSON.parse(atob(token.split('.')[1])) as Customer;
   }
 

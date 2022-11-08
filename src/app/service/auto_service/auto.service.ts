@@ -21,7 +21,6 @@ export class AutoService {
   }
 
   createAuto(auto: Auto): Observable<Object> {
-    console.log(auto)
     return this.httpClient.post((this.autoUrl + "/save"), auto);
   }
 
@@ -30,7 +29,6 @@ export class AutoService {
   }
 
   updateAuto(id: number, auto: Auto): Observable<Object> {
-    console.log(auto)
     return this.httpClient.put(`${this.autoUrl}/edit`, auto);
   }
 

@@ -89,7 +89,6 @@ export class CustomerTableComponent implements OnInit {
   private getCustomers() {
     this.customerService.getCustomers().subscribe(customers => {
       this.customers = customers;
-      console.log(customers)
     })
   }
 

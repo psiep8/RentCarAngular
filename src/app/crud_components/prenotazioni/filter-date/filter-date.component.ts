@@ -26,7 +26,6 @@ export class FilterDateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.reactiveForm.value);
     sessionStorage.setItem("startDate", this.reactiveForm.value.dataInizio);
     sessionStorage.setItem("endDate", this.reactiveForm.value.dataFine);
     this.router.navigateByUrl('user/listAutoRange');

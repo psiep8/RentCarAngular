@@ -24,7 +24,6 @@ export class EditCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id)
     this.customerService.getCustomerById(this.id).subscribe((customer: Customer) => {
       this.customer = customer;
     }, error => console.log(error));
@@ -41,9 +40,7 @@ export class EditCustomerComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.reactiveForm.value);
     this.customerService.updateCustomer(this.id, this.reactiveForm.value).subscribe(res => {
-      console.log('Post updated successfully!');
       this.token = localStorage.getItem("token");
       let role = this.authService.getRole(this.token);
       if (role === "ROLE_ADMIN") {

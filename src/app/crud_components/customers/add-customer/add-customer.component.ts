@@ -19,18 +19,16 @@ export class AddCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
-      nome: new FormControl('', [Validators.required]),
-      cognome: new FormControl('', [Validators.required]),
+      nome: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      cognome: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      telefono: new FormControl('', [Validators.min(10)]),
+      telefono: new FormControl('', [Validators.minLength(10),Validators.pattern('[0-9 ]*')]),
       dataNascita: new FormControl('', [Validators.required]),
     });
   }
 
   submit() {
-    console.log(this.reactiveForm.value);
     this.customerService.createCustomer(this.reactiveForm.value).subscribe((res: any) => {
-      console.log('Post created successfully!');
       this.router.navigate(['admin']);
     })
   }

@@ -35,7 +35,6 @@ export class EditAutoComponent implements OnInit {
 
   submit() {
     this.autoService.updateAuto(this.id, this.reactiveForm.value).subscribe(res => {
-      console.log('Post updated successfully!');
       this.router.navigateByUrl('auto');
     })
   }

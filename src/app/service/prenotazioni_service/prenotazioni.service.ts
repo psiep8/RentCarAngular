@@ -20,7 +20,6 @@ export class PrenotazioniService {
   }
 
   createPrenotazione(prenotazione: Prenotazioni, idAuto: number): Observable<Object> {
-    console.log(prenotazione)
     return this.httpClient.post((this.prenotazioniUrl + "/save"), prenotazione, {
       params: {
         autoID: idAuto

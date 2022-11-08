@@ -80,7 +80,6 @@ export class PrenotazioniTableComponent implements OnInit {
   getPrenotazioni(): void {
     this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => {
       this.prenotazioni = prenotazioni;
-      console.log(prenotazioni)
     });
   }
 
