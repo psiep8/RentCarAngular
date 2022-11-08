@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
     this.email = this.authService.getEmail(this.token);
     this.customerService.getUserByEmail(this.email).subscribe(data => {
         this.customer = data;
-        this.router.navigate(['admin/edit', this.customer.idUtente]);
+        this.router.navigate(['admin/upSert', this.customer.idUtente]);
       }
     )
   }

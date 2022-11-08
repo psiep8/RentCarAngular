@@ -12,7 +12,7 @@ export class PrenotazioniService {
 
   private prenotazioniUrl = "http://localhost:8080/api/prenotazione";
 
-  constructor(private httpClient: HttpClient, private autoService: AutoService) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getPrenotazioni(): Observable<Prenotazioni[]> {
@@ -20,7 +20,7 @@ export class PrenotazioniService {
   }
 
   createPrenotazione(prenotazione: Prenotazioni, idAuto: number): Observable<Object> {
-    return this.httpClient.post((this.prenotazioniUrl + "/save"), prenotazione, {
+    return this.httpClient.post((this.prenotazioniUrl + "/upSert"), prenotazione, {
       params: {
         autoID: idAuto
       }
@@ -32,7 +32,7 @@ export class PrenotazioniService {
   }
 
   updatePrenotazione(id: number, prenotazione: Prenotazioni, idAuto: number): Observable<Object> {
-    return this.httpClient.put(`${this.prenotazioniUrl}/edit`, prenotazione, {
+    return this.httpClient.put(`${this.prenotazioniUrl}/upSert`, prenotazione, {
       params: {
         autoID: idAuto
       }

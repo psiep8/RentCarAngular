@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditDateComponent } from './edit-date.component';
+import { UpsertCustomerComponent } from './upsert-customer.component';
 
-describe('EditDateComponent', () => {
-  let component: EditDateComponent;
-  let fixture: ComponentFixture<EditDateComponent>;
+describe('AddComponent', () => {
+  let component: UpsertCustomerComponent;
+  let fixture: ComponentFixture<UpsertCustomerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditDateComponent ]
+      declarations: [ UpsertCustomerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditDateComponent);
+    fixture = TestBed.createComponent(UpsertCustomerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

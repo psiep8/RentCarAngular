@@ -99,9 +99,9 @@ export class CustomerTableComponent implements OnInit {
         this.getCustomers();
       })
     } else if (event.action.buttonOnTop === true) {
-      this.router.navigate(['admin/add'])
+      this.router.navigate(['admin/upSert'])
     } else {
-      this.router.navigate(['admin/edit', event.dataRow.idUtente])
+      this.router.navigate(['admin/upSert', event.dataRow.idUtente])
     }
   }
 

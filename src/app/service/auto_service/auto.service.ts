@@ -21,7 +21,7 @@ export class AutoService {
   }
 
   createAuto(auto: Auto): Observable<Object> {
-    return this.httpClient.post((this.autoUrl + "/save"), auto);
+    return this.httpClient.post((this.autoUrl + "/upSert"), auto);
   }
 
   getAutoById(id: number): Observable<Auto> {
@@ -29,7 +29,7 @@ export class AutoService {
   }
 
   updateAuto(id: number, auto: Auto): Observable<Object> {
-    return this.httpClient.put(`${this.autoUrl}/edit`, auto);
+    return this.httpClient.put(`${this.autoUrl}/upSert`, auto);
   }
 
   deleteAuto(id: number): Observable<Object> {

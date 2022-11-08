@@ -8,7 +8,7 @@ import {
   MyTableConfig
 } from "../../../components/tabella/myclasses";
 import {AutoService} from "../../../service/auto_service/auto.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Auto} from "../../../interfaces/auto";
 import {PrenotazioniService} from "../../../service/prenotazioni_service/prenotazioni.service";
 import * as moment from "moment";
@@ -40,12 +40,16 @@ export class ListAutoRangeComponent implements OnInit {
   token!: any;
   id!: number;
 
-  constructor(private autoService: AutoService, private prenotazioneService: PrenotazioniService, private router: Router, private customerService: CustomerService) {
+  constructor(private autoService: AutoService, private prenotazioneService: PrenotazioniService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.dataInizio = sessionStorage.getItem("startDate");
-    this.dataFine = sessionStorage.getItem("endDate");
+
+    this.route.queryParams.subscribe(params => {
+      this.dataInizio = params['inizio']
+      this.dataFine = params['fine']
+      this.id = params['id']
+    })
 
     this.getAutos();
 
@@ -96,9 +100,6 @@ export class ListAutoRangeComponent implements OnInit {
       approvata: false
     };
 
-    this.variableID = sessionStorage.getItem("idPrenotazione")
-    this.id = +this.variableID
-
     const rentToEdit: Prenotazioni = {
       id: this.id,
       dataInizio: this.dataInizio,
@@ -106,18 +107,12 @@ export class ListAutoRangeComponent implements OnInit {
       approvata: false
     };
 
-
     if (this.id) {
       this.prenotazioneService.updatePrenotazione(this.id, rentToEdit, event.dataRow.id).subscribe(() => {
-        sessionStorage.removeItem("idPrenotazione")
-        sessionStorage.removeItem("startDate");
-        sessionStorage.removeItem("endDate");
         this.router.navigateByUrl('user')
       })
     } else {
       this.prenotazioneService.createPrenotazione(rentToAdd, event.dataRow.id).subscribe(() => {
-        sessionStorage.removeItem("startDate");
-        sessionStorage.removeItem("endDate");
         this.router.navigateByUrl('user')
       })
     }

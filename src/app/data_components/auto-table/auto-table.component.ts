@@ -97,9 +97,9 @@ export class AutoTableComponent implements OnInit {
         this.auto = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
       })
     } else if (event.action.buttonOnTop === true) {
-      this.router.navigate(['auto/add'])
+      this.router.navigate(['auto/upSert'])
     } else {
-      this.router.navigate(['auto/edit', event.dataRow.id])
+      this.router.navigate(['auto/upSert', event.dataRow.id])
     }
   }
 }

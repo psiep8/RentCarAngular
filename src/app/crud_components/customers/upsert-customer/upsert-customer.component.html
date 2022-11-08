@@ -1,8 +1,14 @@
 <br>
+<div *ngIf="id==undefined">
 <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta customer</p></h1>
+</div>
+<div *ngIf="id!=undefined">
+  <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Modifica customer</p></h1>
+</div>
 <br>
 <div align="center" style="margin: auto">
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
+    <input *ngIf="id!=undefined" type="hidden" id="idUtente" formControlName="idUtente" class="form-control">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="nome" formControlName="nome" class="form-control">
       <div *ngIf="reactiveForm.get('nome')?.errors &&reactiveForm.get('nome')?.touched" class="alert alert-danger">
@@ -41,7 +47,9 @@
         Data richiesta!
       </div>
       <label for="dataNascita">Data di nascita: </label>
+      <input type="hidden" id="customer" formControlName="customer" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary">Aggiungi</button>
+    <button type="submit" class="btn btn-primary">Procedi</button>
   </form>
 </div>
+

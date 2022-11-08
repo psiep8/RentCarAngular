@@ -31,7 +31,7 @@ export class CustomerService {
   }
 
   createCustomer(customer: Customer): Observable<Object> {
-    return this.httpClient.post((this.customersUrl + "/save"), customer);
+    return this.httpClient.post((this.customersUrl + "/upSert"), customer);
   }
 
   getUserByEmail(email: string): Observable<Customer> {
@@ -47,7 +47,7 @@ export class CustomerService {
   }
 
   updateCustomer(id: number, customer: Customer): Observable<Object> {
-    return this.httpClient.put(`${this.customersUrl}/edit`, customer);
+    return this.httpClient.put(`${this.customersUrl}/upSert`, customer);
   }
 
   deleteCustomer(id: number): Observable<Object> {

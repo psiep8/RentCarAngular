@@ -1,8 +1,13 @@
 <br>
-<h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta auto</p></h1>
-<br>
+<div *ngIf="id==undefined">
+  <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta auto</p></h1>
+</div>
+<div *ngIf="id!=undefined">
+  <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Modifica auto</p></h1>
+</div><br>
 <div align="center" style="margin: auto">
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
+    <input *ngIf="id!=undefined" type="hidden" id="id" formControlName="id" class="form-control">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="marca" formControlName="marca" class="form-control">
       <label for="marca">Marca: </label>
@@ -15,6 +20,6 @@
       <input type="text" id="cilindrata" formControlName="cilindrata" class="form-control">
       <label for="cilindrata">Cilindrata: </label>
     </div>
-    <button type="submit" class="btn btn-primary">Aggiungi</button>
+    <button type="submit" class="btn btn-primary">Procedi</button>
   </form>
 </div>

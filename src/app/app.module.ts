@@ -5,8 +5,6 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from "./components/footer/footer.component";
 import {LoginComponent} from './views/login/login.component';
-import {UserComponent} from './views/user/user.component';
-import {AdminComponent} from './views/admin/admin.component';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
 import {TabellaComponent} from "./components/tabella/tabella.component";
@@ -22,15 +20,12 @@ import {InMemoryDataService} from './service/in-memory-data.service';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {PrenotazioniTableComponent} from './data_components/prenotazioni-table/prenotazioni-table.component';
 import {AutoTableComponent} from './data_components/auto-table/auto-table.component';
-import {AddCustomerComponent} from './crud_components/customers/add-customer/add-customer.component';
-import {AddAutoComponent} from './crud_components/auto/add-auto/add-auto.component';
-import {EditAutoComponent} from './crud_components/auto/edit-auto/edit-auto.component';
-import {EditCustomerComponent} from './crud_components/customers/edit-customer/edit-customer.component';
+import {UpsertCustomerComponent} from './crud_components/customers/upsert-customer/upsert-customer.component';
+import {UpsertAutoComponent} from './crud_components/auto/upsert-auto/upsert-auto.component';
 import {AuthInterceptorProvider} from "./service/login/auth-interceptor";
 import {FilterDateComponent} from './crud_components/prenotazioni/filter-date/filter-date.component';
-import {EditDateComponent} from './crud_components/prenotazioni/edit-date/edit-date.component';
-import { ListAutoRangeComponent } from './crud_components/prenotazioni/list-auto-range/list-auto-range.component';
-import { ListPrenotazioniComponent } from './crud_components/customers/list-prenotazioni/list-prenotazioni.component';
+import {ListAutoRangeComponent} from './crud_components/auto/list-auto-range/list-auto-range.component';
+import {ListPrenotazioniComponent} from './crud_components/prenotazioni/list-prenotazioni/list-prenotazioni.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +33,6 @@ import { ListPrenotazioniComponent } from './crud_components/customers/list-pren
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    UserComponent,
-    AdminComponent,
     TabellaComponent,
     ButtonComponent,
     FilterPipe,
@@ -49,12 +42,9 @@ import { ListPrenotazioniComponent } from './crud_components/customers/list-pren
     CustomerTableComponent,
     PrenotazioniTableComponent,
     AutoTableComponent,
-    AddCustomerComponent,
-    AddAutoComponent,
-    EditAutoComponent,
-    EditCustomerComponent,
+    UpsertCustomerComponent,
+    UpsertAutoComponent,
     FilterDateComponent,
-    EditDateComponent,
     ListAutoRangeComponent,
     ListPrenotazioniComponent,
   ],
