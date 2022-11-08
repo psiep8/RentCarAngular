@@ -15,7 +15,8 @@
         <br>
         <button class="btn btn-light" (click)="onAutoList()" style="width: 4%">Parco Auto</button>
         <br>
-        <button class="btn btn-light" (click)="onProfile()" style="width: 4%" *ngIf="authService.isUser$|async">Profilo
+        <button class="btn btn-light" (click)="onProfile()" style="width: 4%" *ngIf="authService.getUserIn()">
+          Profilo
           Utente
         </button>
         <br>

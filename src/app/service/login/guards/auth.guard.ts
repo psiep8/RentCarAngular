@@ -11,16 +11,18 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isLoggedIn$.pipe(
-      tap((isLoggedIn) => {
-        if (!isLoggedIn) {
-          this.router.navigate(['']);
-        }
-      })
-    );
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): boolean | UrlTree {
+
+    if (!this.authService.getLoggedIn()) {
+      alert('You are not allowed to view this page. You are redirected to login Page');
+
+      this.router.navigate([""]);
+      return false;
+
+    }
+
+    return true;
   }
 
 }

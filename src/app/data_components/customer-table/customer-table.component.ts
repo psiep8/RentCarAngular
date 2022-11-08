@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../interfaces/customer";
 import {
+  ActionEnum,
   MyHeaders,
   MyOrder,
   MyPagination,
@@ -64,21 +65,19 @@ export class CustomerTableComponent implements OnInit {
       label: "Aggiungi nuovo utente",
       customCssClass: "btn btn-dark",
       buttonOnTop: true,
-      buttonEdit: false
+      actionEnum: ActionEnum.AGGIUNTA
     }, {
       icon: "https://static.thenounproject.com/png/1054395-200.png",
       label: "Modifica",
       customCssClass: "btn btn-secondary",
       buttonOnTop: false,
-      buttonEdit: true
-
+      actionEnum: ActionEnum.MODIFICA
     }, {
       icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
       label: "Elimina",
       customCssClass: "btn btn-primary",
       buttonOnTop: false,
-      buttonEdit: false
-
+      actionEnum: ActionEnum.CANCELLAZIONE
     }
     ]
     this.tableConfig = {
@@ -93,19 +92,22 @@ export class CustomerTableComponent implements OnInit {
   }
 
   onClickAction(event: any) {
-    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
-      this.customerService.deleteCustomer(event.dataRow.idUtente).subscribe(res => {
-        this.customers = this.customers.filter((item: Customer) => item.idUtente !== event.dataRow.id);
-        this.getCustomers();
-      })
-    } else if (event.action.buttonOnTop === true) {
+    if (event.action.buttonOnTop === true) {
       this.router.navigate(['admin/upSert'])
-    } else {
-      this.router.navigate(['admin/upSert', event.dataRow.idUtente])
+    }
+    if (event.action.buttonOnTop === false) {
+      if (event.action.actionEnum === ActionEnum.MODIFICA) {
+        this.router.navigate(['admin/upSert', event.dataRow.idUtente])
+      } else {
+        this.customerService.deleteCustomer(event.dataRow.idUtente).subscribe(res => {
+          this.customers = this.customers.filter((item: Customer) => item.idUtente !== event.dataRow.idUtente);
+        })
+      }
     }
   }
 
-  onPrenotazioni(){
+
+  onPrenotazioni() {
     this.router.navigateByUrl("admin/prenotazioni")
   }
 

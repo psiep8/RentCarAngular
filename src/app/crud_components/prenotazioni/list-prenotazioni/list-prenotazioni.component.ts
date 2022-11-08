@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {
+  ActionEnum,
   MyHeaders,
   MyOrder,
   MyPagination,
@@ -57,7 +58,7 @@ export class ListPrenotazioniComponent implements OnInit {
       label: "Approva",
       customCssClass: "btn btn-dark",
       buttonOnTop: false,
-      buttonEdit: false
+      actionEnum: ActionEnum.APPROVAZIONE
     }]
 
   }

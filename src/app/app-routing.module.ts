@@ -47,7 +47,8 @@ const routes: Routes = [
 
   }, {
     path: 'auto/upSert/:id',
-    component: UpsertAutoComponent, canActivate: [AuthGuard]
+    component: UpsertAutoComponent,
+    canActivate: [AuthGuard]
 
   }, {
     path: 'user/filter',

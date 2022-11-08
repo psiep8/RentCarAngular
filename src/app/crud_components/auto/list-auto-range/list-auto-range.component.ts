@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {
+  ActionEnum,
   MyHeaders,
   MyOrder,
   MyPagination,
@@ -9,12 +10,8 @@ import {
 } from "../../../components/tabella/myclasses";
 import {AutoService} from "../../../service/auto_service/auto.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Auto} from "../../../interfaces/auto";
 import {PrenotazioniService} from "../../../service/prenotazioni_service/prenotazioni.service";
-import * as moment from "moment";
-import {HttpClient} from "@angular/common/http";
 import {Prenotazioni} from "../../../interfaces/prenotazioni";
-import {CustomerService} from "../../../service/customer_service/customer.service";
 
 @Component({
   selector: 'app-list-auto-range',
@@ -32,11 +29,9 @@ export class ListAutoRangeComponent implements OnInit {
   headers!: MyHeaders[];
   actions!: MyTableActions[];
 
-
   dataInizio!: any;
   dataFine!: any;
 
-  variableID!: any;
   token!: any;
   id!: number;
 
@@ -78,7 +73,7 @@ export class ListAutoRangeComponent implements OnInit {
       label: "Prenota",
       customCssClass: "btn btn-primary",
       buttonOnTop: false,
-      buttonEdit: false
+      actionEnum: ActionEnum.PRENOTAZIONE
     }]
 
     this.tableConfig = {

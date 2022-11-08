@@ -14,17 +14,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this._isLoggedIn$.asObservable();
-
-  private _isAdmin$ = new BehaviorSubject<boolean>(false);
-  isAdmin$ = this._isAdmin$.asObservable();
-
-  private _isUser$ = new BehaviorSubject<boolean>(false);
-  isUser$ = this._isUser$.asObservable();
 
   user!: Customer;
-
 
   constructor(private http: HttpClient) {
   }
@@ -37,13 +28,11 @@ export class AuthService {
       }, ...httpOptions
     }).pipe(
       tap((response: any) => {
-        this._isLoggedIn$.next(true);
+        sessionStorage.setItem("isLoggedIn", "true")
         localStorage.setItem('token', response.token);
         let role = this.getRole(response.token)
-        if (role === "ROLE_ADMIN") {
-          this._isAdmin$.next(true);
-        } else if (role === "ROLE_USER") {
-          this._isUser$.next(true);
+        if (role === "ROLE_USER") {
+          sessionStorage.setItem("isUser", "true")
         }
         this.user = this.getUser(response.token);
       })
@@ -52,6 +41,16 @@ export class AuthService {
 
   getUser(token: string): Customer {
     return JSON.parse(atob(token.split('.')[1])) as Customer;
+  }
+
+  getLoggedIn(): boolean {
+    let log = sessionStorage.getItem("isLoggedIn")
+    return log === "true";
+  }
+
+  getUserIn(): boolean {
+    let log = sessionStorage.getItem("isUser")
+    return log === "true";
   }
 
   getRole(token: string): string {
@@ -66,10 +65,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
-    this._isLoggedIn$.next(false);
-    this._isUser$.next(false)
-    this._isAdmin$.next(false)
-
+    sessionStorage.removeItem("isLoggedIn")
+    sessionStorage.removeItem("isUser")
   }
 
 

@@ -53,10 +53,11 @@ export class MyTableActions {
 
   buttonOnTop!: boolean;
 
-  buttonEdit!: boolean;
-
+  actionEnum!: ActionEnum;
 }
 
-
+export enum ActionEnum {
+  AGGIUNTA, MODIFICA, CANCELLAZIONE, APPROVAZIONE, PRENOTAZIONE
+}
 
 

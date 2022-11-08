@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {
+  ActionEnum,
   MyHeaders,
   MyOrder,
   MyPagination,
@@ -12,6 +13,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Prenotazioni} from "../../interfaces/prenotazioni";
 import {Route, Router} from "@angular/router";
 import {Customer} from "../../interfaces/customer";
+import {Auto} from "../../interfaces/auto";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 @Component({
   selector: 'app-prenotazioni-table',
@@ -52,23 +55,22 @@ export class PrenotazioniTableComponent implements OnInit {
     }
     this.actions = [{
       icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
-      label: "Aggiungi nuova prenotazione",
+      label: "Aggiungi nuovo utente",
       customCssClass: "btn btn-dark",
       buttonOnTop: true,
-      buttonEdit: false
+      actionEnum: ActionEnum.AGGIUNTA
     }, {
       icon: "https://static.thenounproject.com/png/1054395-200.png",
       label: "Modifica",
       customCssClass: "btn btn-secondary",
       buttonOnTop: false,
-      buttonEdit: true
+      actionEnum: ActionEnum.MODIFICA
     }, {
       icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
       label: "Elimina",
       customCssClass: "btn btn-primary",
       buttonOnTop: false,
-      buttonEdit: false
-
+      actionEnum: ActionEnum.CANCELLAZIONE
     }
     ]
     this.tableConfig = {
@@ -84,15 +86,17 @@ export class PrenotazioniTableComponent implements OnInit {
   }
 
   onClickAction(event: any) {
-    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
-      this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
-        this.prenotazioni = this.prenotazioni.filter((item: Customer) => item.idUtente !== event.dataRow.id);
-        this.getPrenotazioni();
-      })
-    } else if (event.action.buttonOnTop === true) {
-      this.router.navigateByUrl('user/filter')
-    } else {
-      this.router.navigate(['user/filter', event.dataRow.id])
+    if (event.action.buttonOnTop === true) {
+      this.router.navigate(['user/filter'])
+    }
+    if (event.action.buttonOnTop === false) {
+      if (event.action.actionEnum === ActionEnum.MODIFICA) {
+        this.router.navigate(['user/filter', event.dataRow.id])
+      } else {
+        this.prenotazioniService.deletePrenotazione(event.dataRow.id).subscribe(res => {
+          this.prenotazioni = this.prenotazioni.filter((item: Prenotazioni) => item.id !== event.dataRow.id);
+        })
+      }
     }
   }
 

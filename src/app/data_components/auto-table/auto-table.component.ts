@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {
+  ActionEnum,
   MyHeaders,
   MyOrder,
   MyPagination,
@@ -9,8 +10,9 @@ import {
 } from "../../components/tabella/myclasses";
 import {AutoService} from "../../service/auto_service/auto.service";
 import {Auto} from "../../interfaces/auto";
-import {Router, RouterLink} from "@angular/router";
+import {Router} from "@angular/router";
 import {AuthService} from "../../service/login/auth.service";
+import {Customer} from "../../interfaces/customer";
 
 @Component({
   selector: 'app-auto-table',
@@ -63,19 +65,19 @@ export class AutoTableComponent implements OnInit {
         label: "Aggiungi nuova auto",
         customCssClass: "btn btn-dark",
         buttonOnTop: true,
-        buttonEdit: false
+        actionEnum: ActionEnum.AGGIUNTA
       }, {
         icon: "https://static.thenounproject.com/png/1054395-200.png",
         label: "Modifica",
         customCssClass: "btn btn-secondary",
         buttonOnTop: false,
-        buttonEdit: true
+        actionEnum: ActionEnum.MODIFICA
       }, {
         icon: "https://img.favpng.com/15/18/2/button-delete-key-icon-png-favpng-QyKEi5YZShJs1T6X5mdfkLUSW.jpg",
         label: "Elimina",
         customCssClass: "btn btn-primary",
         buttonOnTop: false,
-        buttonEdit: false
+        actionEnum: ActionEnum.CANCELLAZIONE
       }]
     this.tableConfig = {
       headers: this.headers, order: this.order, search: this.search, pagination: this.pagination,
@@ -92,14 +94,17 @@ export class AutoTableComponent implements OnInit {
   }
 
   onClickAction(event: any) {
-    if (event.action.buttonEdit === false && event.action.buttonOnTop === false) {
-      this.autoService.deleteAuto(event.dataRow.id).subscribe(res => {
-        this.auto = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
-      })
-    } else if (event.action.buttonOnTop === true) {
+    if (event.action.buttonOnTop === true) {
       this.router.navigate(['auto/upSert'])
-    } else {
-      this.router.navigate(['auto/upSert', event.dataRow.id])
+    }
+    if (event.action.buttonOnTop === false) {
+      if (event.action.actionEnum === ActionEnum.MODIFICA) {
+        this.router.navigate(['auto/upSert', event.dataRow.id])
+      } else {
+        this.autoService.deleteAuto(event.dataRow.id).subscribe(res => {
+          this.autoService = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
+        })
+      }
     }
   }
 }
