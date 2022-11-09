@@ -102,7 +102,7 @@ export class AutoTableComponent implements OnInit {
         this.router.navigate(['auto/upSert', event.dataRow.id])
       } else {
         this.autoService.deleteAuto(event.dataRow.id).subscribe(res => {
-          this.autoService = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
+          this.auto = this.auto.filter((item: Auto) => item.id !== event.dataRow.id);
         })
       }
     }

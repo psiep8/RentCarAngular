@@ -5,6 +5,7 @@ import {AutoService} from "../../service/auto_service/auto.service";
 import {Auto} from "../../interfaces/auto";
 import {Router} from "@angular/router";
 import {Location} from '@angular/common';
+import {FilterPipe} from "./pipes/filter.pipe";
 
 
 @Component({
@@ -42,7 +43,7 @@ export class TabellaComponent implements OnInit {
 
   auto: any = [];
 
-  constructor() {
+  constructor(private filter: FilterPipe) {
   }
 
   ngOnInit(): void {
@@ -71,5 +72,13 @@ export class TabellaComponent implements OnInit {
   onClickButton(action: MyTableActions, dataRow: any) {
     this.outputTable.emit({action, dataRow})
   }
+
+
+  getPagesToShow() {
+    let data = this.filter.transform(this.data, this.filterText, this.selectedField)
+    let pages = data.length / this.tableConfig.pagination.itemPerPage;
+    return Array.from(Array(Math.ceil(pages)).keys())
+  }
+
 
 }

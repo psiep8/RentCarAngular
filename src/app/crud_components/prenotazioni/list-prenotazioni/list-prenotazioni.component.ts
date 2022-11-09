@@ -70,8 +70,12 @@ export class ListPrenotazioniComponent implements OnInit {
   }
 
   onClickAction(event: any) {
-    this.customerService.approvaPrenotazione(event.dataRow.id).subscribe(res => {
-      this.router.navigateByUrl("admin")
-    })
+    if (event.action.buttonOnTop === false) {
+      if (event.action.actionEnum === ActionEnum.APPROVAZIONE) {
+        this.customerService.approvaPrenotazione(event.dataRow.id).subscribe(res => {
+          this.router.navigateByUrl("admin")
+        })
+      }
+    }
   }
 }

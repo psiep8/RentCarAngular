@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FilterPipe} from "./components/tabella/pipes/filter.pipe";
 import {OrderPipe} from "./components/tabella/pipes/order.pipe";
 import {PaginationPipe} from "./components/tabella/pipes/pagination.pipe";
-import {FilterpagePipe} from "./components/tabella/pipes/filterpage.pipe";
 import {CustomerTableComponent} from './data_components/customer-table/customer-table.component';
 import {HttpClientModule} from "@angular/common/http";
 import {InMemoryDataService} from './service/in-memory-data.service';
@@ -38,7 +37,6 @@ import {ListPrenotazioniComponent} from './crud_components/prenotazioni/list-pre
     FilterPipe,
     OrderPipe,
     PaginationPipe,
-    FilterpagePipe,
     CustomerTableComponent,
     PrenotazioniTableComponent,
     AutoTableComponent,
@@ -62,7 +60,7 @@ import {ListPrenotazioniComponent} from './crud_components/prenotazioni/list-pre
     //HttpClientInMemoryWebApiModule.forRoot(
     // InMemoryDataService
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [AuthInterceptorProvider, FilterPipe],
   bootstrap: [AppComponent]
 })
 

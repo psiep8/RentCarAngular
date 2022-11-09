@@ -102,16 +102,20 @@ export class ListAutoRangeComponent implements OnInit {
       approvata: false
     };
 
-    if (this.id) {
-      this.prenotazioneService.updatePrenotazione(this.id, rentToEdit, event.dataRow.id).subscribe(() => {
-        this.router.navigateByUrl('user')
-      })
-    } else {
-      this.prenotazioneService.createPrenotazione(rentToAdd, event.dataRow.id).subscribe(() => {
-        this.router.navigateByUrl('user')
-      })
+    if (event.action.buttonOnTop === false) {
+      if (event.action.actionEnum === ActionEnum.PRENOTAZIONE) {
+
+        if (this.id) {
+          this.prenotazioneService.updatePrenotazione(this.id, rentToEdit, event.dataRow.id).subscribe(() => {
+            this.router.navigateByUrl('user')
+          })
+        } else {
+          this.prenotazioneService.createPrenotazione(rentToAdd, event.dataRow.id).subscribe(() => {
+            this.router.navigateByUrl('user')
+          })
+        }
+      }
     }
   }
-
 
 }
