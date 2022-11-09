@@ -11,16 +11,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <button class="btn btn-light" (click)="toHome()" style="width: 4%">HomePage</button>
+        <button class="btn btn-light" (click)="toHome()" style="width: 15%">HomePage</button>
         <br>
-        <button class="btn btn-light" (click)="onAutoList()" style="width: 4%">Parco Auto</button>
+        <button class="btn btn-light" (click)="onAutoList()" style="width: 15%">Parco Auto</button>
         <br>
-        <button class="btn btn-light" (click)="onProfile()" style="width: 4%" *ngIf="authService.getUserIn()">
+        <button class="btn btn-light" (click)="onProfile()" style="width: 15%" *ngIf="authService.getUserIn()">
           Profilo
           Utente
         </button>
         <br>
-        <div class="align-content-md-between" style="width: 4%">
+        <div class="align-content-md-between" style="width: 15%">
           <button class="w-100 btn btn-lg btn-danger" type="submit" (click)="onLogout()">Logout
           </button>
         </div>

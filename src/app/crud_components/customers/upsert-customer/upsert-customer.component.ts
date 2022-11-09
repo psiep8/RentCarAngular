@@ -42,7 +42,7 @@ export class UpsertCustomerComponent implements OnInit {
       nome: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       cognome: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      telefono: new FormControl('', [Validators.minLength(10), Validators.pattern('[0-9 ]*')]),
+      telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('[0-9 ]*')]),
       dataNascita: new FormControl('', [Validators.required]),
       customer: new FormControl('', [Validators.required])
     });

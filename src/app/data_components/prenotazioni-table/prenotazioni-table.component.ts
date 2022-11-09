@@ -55,7 +55,7 @@ export class PrenotazioniTableComponent implements OnInit {
     }
     this.actions = [{
       icon: "https://it.seaicons.com/wp-content/uploads/2016/11/Button-Add-icon.png",
-      label: "Aggiungi nuovo utente",
+      label: "Aggiungi nuova prenotazione",
       customCssClass: "btn btn-dark",
       buttonOnTop: true,
       actionEnum: ActionEnum.AGGIUNTA

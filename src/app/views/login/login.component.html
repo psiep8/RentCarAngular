@@ -6,16 +6,24 @@
     <div class="form-floating">
       <input type="email" class="form-control" id="email" placeholder="Indirizzo email" formControlName="email"/>
       <div
-        *ngIf="reactiveForm.get('email')?.errors"
+        *ngIf="reactiveForm?.get('email')?.hasError('required')"
         class="alert alert-danger"> Richiesto indirizzo email!
+      </div>
+      <div
+        *ngIf="reactiveForm?.get('email')?.hasError('email')"
+        class="alert alert-danger"> Dicitura email necessaria!
       </div>
       <label for="email">Indirizzo email</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"
              required>
-      <div *ngIf="reactiveForm.get('password')?.errors" class="alert alert-danger">
-        Password è richiesta!
+      <div
+        *ngIf="reactiveForm?.get('password')?.hasError('required')"
+        class="alert alert-danger"> Richiesta password!
+      </div>
+      <div *ngIf="reactiveForm.get('password')?.hasError('pattern')" class="alert alert-danger">
+        Caratteri di inserimento errati!
       </div>
       <label for="password">Password</label>
     </div>

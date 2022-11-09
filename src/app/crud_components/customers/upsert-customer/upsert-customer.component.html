@@ -1,6 +1,6 @@
 <br>
 <div *ngIf="id==undefined">
-<h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta customer</p></h1>
+  <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Aggiunta customer</p></h1>
 </div>
 <div *ngIf="id!=undefined">
   <h1><p class="font-weight-light" align="center" style="font-family: 'Baskerville Old Face'">Modifica customer</p></h1>
@@ -11,40 +11,51 @@
     <input *ngIf="id!=undefined" type="hidden" id="idUtente" formControlName="idUtente" class="form-control">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="nome" formControlName="nome" class="form-control">
-      <div *ngIf="reactiveForm.get('nome')?.errors &&reactiveForm.get('nome')?.touched" class="alert alert-danger">
-        Nome richiesto o errore inserimento caratteri!
+      <div *ngIf="reactiveForm?.get('nome')?.hasError('required')"
+           class="alert alert-danger"> Richiesto nome!
+      </div>
+      <div *ngIf="reactiveForm?.get('nome')?.hasError('pattern')"
+           class="alert alert-danger"> Errore inserimento caratteri!
       </div>
       <label for="nome">Nome: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="cognome" formControlName="cognome" class="form-control">
-      <div *ngIf="reactiveForm.get('cognome')?.errors && reactiveForm.get('cognome')?.touched"
-           class="alert alert-danger">
-        Cognome richiesto o errore inserimento caratteri!
+      <div *ngIf="reactiveForm?.get('cognome')?.hasError('required')"
+           class="alert alert-danger"> Richiesto cognome!
+      </div>
+      <div *ngIf="reactiveForm?.get('cognome')?.hasError('pattern')"
+           class="alert alert-danger"> Errore inserimento caratteri!
       </div>
       <label for="cognome">Cognome: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="email" formControlName="email" class="form-control">
-      <div *ngIf="reactiveForm.get('email')?.errors  && reactiveForm.get('cognome')?.touched"
-           class="alert alert-danger">
-        Email richiesta o errore inserimento caratteri!
+      <div *ngIf="reactiveForm?.get('email')?.hasError('required')"
+           class="alert alert-danger"> Richiesto indirizzo email!
+      </div>
+      <div *ngIf="reactiveForm?.get('email')?.hasError('email')"
+           class="alert alert-danger"> Dicitura email necessaria!
       </div>
       <label for="email">Email: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="telefono" formControlName="telefono" class="form-control">
-      <div *ngIf="reactiveForm.get('telefono')?.errors  && reactiveForm.get('telefono')?.touched"
-           class="alert alert-danger">
-        Telefono richiesto o errore inserimento numeri!
+      <div *ngIf="reactiveForm?.get('telefono')?.hasError('required')"
+           class="alert alert-danger"> Richiesto numero di telefono!
+      </div>
+      <div *ngIf="reactiveForm?.get('telefono')?.hasError('minlength')"
+           class="alert alert-danger"> Necessari almeno 10 numeri!
+      </div>
+      <div *ngIf="reactiveForm?.get('telefono')?.hasError('pattern')"
+           class="alert alert-danger"> Richiesto inserimento numeri!
       </div>
       <label for="telefono">Telefono: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="date" id="dataNascita" formControlName="dataNascita" class="form-control">
-      <div *ngIf="reactiveForm.get('dataNascita')?.errors  || reactiveForm.get('dataNascita')?.touched"
-           class="alert alert-danger">
-        Data richiesta!
+      <div *ngIf="reactiveForm?.get('dataNascita')?.hasError('required')"
+           class="alert alert-danger"> Inserisci data!
       </div>
       <label for="dataNascita">Data di nascita: </label>
       <input type="hidden" id="customer" formControlName="customer" class="form-control">

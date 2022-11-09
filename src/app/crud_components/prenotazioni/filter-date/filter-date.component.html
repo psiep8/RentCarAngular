@@ -3,10 +3,16 @@
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="date" id="dataInizio" formControlName="dataInizio" class="form-control">
+      <div *ngIf="reactiveForm?.get('dataInizio')?.hasError('required')"
+           class="alert alert-danger"> Inserisci data di inizio prenotazione!
+      </div>
       <label for="dataInizio">Data di inizio: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="date" id="dataFine" formControlName="dataFine" class="form-control">
+      <div *ngIf="reactiveForm?.get('dataFine')?.hasError('required')"
+           class="alert alert-danger"> Inserisci data di fine prenotazione!
+      </div>
       <label for="dataFine">Data di fine: </label>
     </div>
     <button type="submit" class="btn btn-primary">Check</button>

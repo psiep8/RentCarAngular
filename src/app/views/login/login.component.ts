@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
     this.reactiveForm = new FormGroup(
       {
         email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.pattern(
-          '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$'
-        )])
+        password: new FormControl('', [Validators.required,
+          Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')
+        ])
       })
   }
 
@@ -44,6 +44,13 @@ export class LoginComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       });
+  }
+
+  get getControl() {
+    if (this.reactiveForm != null) {
+      return this.reactiveForm.controls;
+    }
+    return null;
   }
 
 

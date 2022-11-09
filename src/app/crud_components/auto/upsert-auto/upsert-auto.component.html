@@ -9,17 +9,39 @@
   <form [formGroup]="reactiveForm" (ngSubmit)="submit()">
     <input *ngIf="id!=undefined" type="hidden" id="id" formControlName="id" class="form-control">
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
+
       <input type="text" id="marca" formControlName="marca" class="form-control">
+      <div *ngIf="reactiveForm?.get('marca')?.hasError('required')"
+           class="alert alert-danger"> Richiesta marca!
+      </div>
+      <div *ngIf="reactiveForm?.get('marca')?.hasError('pattern')"
+           class="alert alert-danger"> Errore inserimento caratteri!
+      </div>
       <label for="marca">Marca: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="modello" formControlName="modello" class="form-control">
+      <div *ngIf="reactiveForm?.get('modello')?.hasError('required')"
+           class="alert alert-danger"> Richiesto modello!
+      </div>
+      <div *ngIf="reactiveForm?.get('modello')?.hasError('pattern')"
+           class="alert alert-danger"> Errore inserimento caratteri!
+      </div>
       <label for="modello">Modello: </label>
     </div>
     <div class="form-floating mb-3" align="center" style="margin: auto; width: 30%">
       <input type="text" id="cilindrata" formControlName="cilindrata" class="form-control">
+      <div *ngIf="reactiveForm?.get('cilindrata')?.hasError('required')"
+           class="alert alert-danger"> Richiesto numero di cilindrata!
+      </div>
+      <div *ngIf="reactiveForm?.get('cilindrata')?.hasError('maxlength')"
+           class="alert alert-danger"> Non possono essere inseriti più di 3 numeri!
+      </div>
+      <div *ngIf="reactiveForm?.get('cilindrata')?.hasError('pattern')"
+           class="alert alert-danger"> Richiesto inserimento numeri!
+      </div>
       <label for="cilindrata">Cilindrata: </label>
+      <button type="submit" class="btn btn-primary">Procedi</button>
     </div>
-    <button type="submit" class="btn btn-primary">Procedi</button>
   </form>
 </div>

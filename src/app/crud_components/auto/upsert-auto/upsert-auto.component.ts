@@ -33,9 +33,9 @@ export class UpsertAutoComponent implements OnInit {
     }
     this.reactiveForm = new FormGroup({
       id: new FormControl(this.id, [Validators.required]),
-      marca: new FormControl('', [Validators.required]),
-      modello: new FormControl('', [Validators.required]),
-      cilindrata: new FormControl('', [Validators.required]),
+      marca: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      modello: new FormControl('', [Validators.required, Validators.pattern('([a-zA-Z ]*)([0-9 ]*)')]),
+      cilindrata: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.pattern('[0-9 ]*')]),
     });
   }
 
