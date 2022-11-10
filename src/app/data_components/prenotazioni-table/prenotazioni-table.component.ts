@@ -42,6 +42,12 @@ export class PrenotazioniTableComponent implements OnInit {
     }, {
       key: "dataFine",
       label: "Data Fine"
+    }, {
+      key: "auto",
+      label: "Veicolo"
+    }, {
+      key: "approvata",
+      label: "Approvata"
     }]
     this.search = {
       columns: ["id", "dataInizio", "dataFine"],
@@ -82,6 +88,7 @@ export class PrenotazioniTableComponent implements OnInit {
   getPrenotazioni(): void {
     this.prenotazioniService.getPrenotazioni().subscribe(prenotazioni => {
       this.prenotazioni = prenotazioni;
+      console.log(this.prenotazioni)
     });
   }
 

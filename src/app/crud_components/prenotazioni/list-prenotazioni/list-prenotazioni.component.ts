@@ -39,6 +39,9 @@ export class ListPrenotazioniComponent implements OnInit {
     }, {
       key: "dataFine",
       label: "Data Fine"
+    }, {
+      key: "auto",
+      label: "Veicolo"
     }]
     this.search = {
       columns: ["id", "dataInizio", "dataFine"],
